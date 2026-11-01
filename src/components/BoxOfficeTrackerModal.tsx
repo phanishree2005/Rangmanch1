@@ -1071,3 +1071,4 @@ Overseas (US/UK/UAE),1200,3600,185000,81.0%,$2.80M (₹23.5 Cr),STRONG_DIASPORA
     </div>
   );
 }
+

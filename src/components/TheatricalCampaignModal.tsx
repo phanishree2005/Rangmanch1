@@ -1099,3 +1099,4 @@ Sucharita Tyagi,Independent Critic,tk_st_481023,48 Hours,SUCHARITA_TYAGI_REVIEW,
     </div>
   );
 }
+

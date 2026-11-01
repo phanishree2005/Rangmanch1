@@ -592,18 +592,6 @@ export default function CastingCallsPage() {
                         <FileText size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#d4af61",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M028 • FEATURE 28
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -723,18 +711,6 @@ export default function CastingCallsPage() {
                         <Calendar size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#34d399",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M029 • FEATURE 29
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -854,18 +830,6 @@ export default function CastingCallsPage() {
                         <Archive size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#a78bfa",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M030 • FEATURE 30
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1047,18 +1011,6 @@ export default function CastingCallsPage() {
                         <Users size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#60a5fa",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M031 • FEATURE 31
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1175,18 +1127,6 @@ export default function CastingCallsPage() {
                         <Lock size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f59e0b",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M032 • FEATURE 32
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1303,18 +1243,6 @@ export default function CastingCallsPage() {
                         <ShieldCheck size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#ec4899",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M033 • FEATURE 33
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1431,18 +1359,6 @@ export default function CastingCallsPage() {
                         <MapPin size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#10b981",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M034 • FEATURE 34
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1560,18 +1476,6 @@ export default function CastingCallsPage() {
                         <CreditCard size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#d4af61",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M035 • FEATURE 35
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1769,18 +1673,6 @@ export default function CastingCallsPage() {
                         <Kanban size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#38bdf8",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M036 • FEATURE 36
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -1897,18 +1789,6 @@ export default function CastingCallsPage() {
                         <Star size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f59e0b",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M037 • FEATURE 37
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2025,18 +1905,6 @@ export default function CastingCallsPage() {
                         <Send size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#10b981",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M038 • FEATURE 38
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2153,18 +2021,6 @@ export default function CastingCallsPage() {
                         <Users size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#a855f7",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M039 • FEATURE 39
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2281,18 +2137,6 @@ export default function CastingCallsPage() {
                         <PieChart size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#ec4899",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M040 • FEATURE 40
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2490,18 +2334,6 @@ export default function CastingCallsPage() {
                         <Video size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#06b6d4",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M041 • FEATURE 41
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2618,18 +2450,6 @@ export default function CastingCallsPage() {
                         <Clock size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#eab308",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M042 • FEATURE 42
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2746,18 +2566,6 @@ export default function CastingCallsPage() {
                         <FileText size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#6366f1",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M043 • FEATURE 43
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -2874,18 +2682,6 @@ export default function CastingCallsPage() {
                         <ShieldAlert size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#ef4444",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M044 • FEATURE 44
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3002,18 +2798,6 @@ export default function CastingCallsPage() {
                         <PhoneCall size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f43f5e",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M045 • FEATURE 45
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3211,18 +2995,6 @@ export default function CastingCallsPage() {
                         <TrendingUp size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#d4af61",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M046 • FEATURE 46
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3339,18 +3111,6 @@ export default function CastingCallsPage() {
                         <Sparkles size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#8b5cf6",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M047 • FEATURE 47
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3467,18 +3227,6 @@ export default function CastingCallsPage() {
                         <Calendar size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#10b981",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M048 • FEATURE 48
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3595,18 +3343,6 @@ export default function CastingCallsPage() {
                         <Smartphone size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#22c55e",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M049 • FEATURE 49
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3723,18 +3459,6 @@ export default function CastingCallsPage() {
                         <Trophy size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#eab308",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M050 • FEATURE 50
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -3851,18 +3575,6 @@ export default function CastingCallsPage() {
                         <Mic size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#0ea5e9",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M051 • FEATURE 51
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4086,18 +3798,6 @@ export default function CastingCallsPage() {
                         <FileSignature size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#d4af61",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M052 • FEATURE 52
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4214,18 +3914,6 @@ export default function CastingCallsPage() {
                         <Clock size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#34d399",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M053 • FEATURE 53
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4342,18 +4030,6 @@ export default function CastingCallsPage() {
                         <Receipt size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f59e0b",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M054 • FEATURE 54
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4470,18 +4146,6 @@ export default function CastingCallsPage() {
                         <ShieldCheck size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#38bdf8",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M055 • FEATURE 55
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4598,18 +4262,6 @@ export default function CastingCallsPage() {
                         <Coins size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#a78bfa",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M056 • FEATURE 56
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4833,18 +4485,6 @@ export default function CastingCallsPage() {
                         <Sparkles size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f43f5e",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M057 • FEATURE 57
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -4961,18 +4601,6 @@ export default function CastingCallsPage() {
                         <Lock size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#fb7185",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M058 • FEATURE 58
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5089,18 +4717,6 @@ export default function CastingCallsPage() {
                         <Mic size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#2dd4bf",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M059 • FEATURE 59
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5217,18 +4833,6 @@ export default function CastingCallsPage() {
                         <Flame size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#fb923c",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M060 • FEATURE 60
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5345,18 +4949,6 @@ export default function CastingCallsPage() {
                         <TrendingUp size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#e879f9",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M061 • FEATURE 61
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5580,18 +5172,6 @@ export default function CastingCallsPage() {
                         <FileCode2 size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#d4af61",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M062 • FEATURE 62
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5708,18 +5288,6 @@ export default function CastingCallsPage() {
                         <Headphones size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#06b6d4",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M063 • FEATURE 63
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5836,18 +5404,6 @@ export default function CastingCallsPage() {
                         <GitMerge size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#8b5cf6",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M064 • FEATURE 64
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -5964,18 +5520,6 @@ export default function CastingCallsPage() {
                         <Split size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#10b981",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M065 • FEATURE 65
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6092,18 +5636,6 @@ export default function CastingCallsPage() {
                         <Music2 size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#ec4899",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M066 • FEATURE 66
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6327,18 +5859,6 @@ export default function CastingCallsPage() {
                         <Crosshair size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#84cc16",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M067 • FEATURE 67
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6455,18 +5975,6 @@ export default function CastingCallsPage() {
                         <Palette size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f97316",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M068 • FEATURE 68
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6583,18 +6091,6 @@ export default function CastingCallsPage() {
                         <Mic2 size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#3b82f6",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M069 • FEATURE 69
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6711,18 +6207,6 @@ export default function CastingCallsPage() {
                         <Stamp size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#ef4444",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M070 • FEATURE 70
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -6839,18 +6323,6 @@ export default function CastingCallsPage() {
                         <Tv2 size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#6366f1",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M071 • FEATURE 71
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7076,18 +6548,6 @@ export default function CastingCallsPage() {
                         <Layers size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#06b6d4",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M072 • FEATURE 72
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7204,18 +6664,6 @@ export default function CastingCallsPage() {
                         <SlidersHorizontal size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f59e0b",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M073 • FEATURE 73
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7416,18 +6864,6 @@ export default function CastingCallsPage() {
                         <Film size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#10b981",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M074 • FEATURE 74
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7544,18 +6980,6 @@ export default function CastingCallsPage() {
                         <Tv size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#a855f7",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M075 • FEATURE 75
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7672,18 +7096,6 @@ export default function CastingCallsPage() {
                         <TrendingUp size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#eab308",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M076 • FEATURE 76
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7800,18 +7212,6 @@ export default function CastingCallsPage() {
                         <Megaphone size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#f43f5e",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M077 • FEATURE 77
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -7928,18 +7328,6 @@ export default function CastingCallsPage() {
                         <Trophy size={22} />
                       </div>
                       <div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            fontFamily: "monospace",
-                            letterSpacing: "0.18em",
-                            color: "#6366f1",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          MODULE M078 • FEATURE 78
-                        </div>
                         <h3
                           className="font-cinema"
                           style={{
@@ -8551,6 +7939,55 @@ export default function CastingCallsPage() {
         onClose={() => setIsScreeningRoomOpen(false)}
         defaultProject={selectedPitchProject}
       />
+      {/* Feature #72: LED Wall ICVFX & Unreal Stage Sync Modal */}
+      <IcvfxStageModal
+        isOpen={isIcvfxStageOpen}
+        onClose={() => setIsIcvfxStageOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #73: DIT Live Color Grading & Video Assist Hub Modal */}
+      <DitLiveGradeModal
+        isOpen={isDitLiveGradeOpen}
+        onClose={() => setIsDitLiveGradeOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #74: DCI Cinema Package & Theatrical KDM Encryption Modal */}
+      <DcpPackagingModal
+        isOpen={isDcpPackagingOpen}
+        onClose={() => setIsDcpPackagingOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #75: Multi-Territory OTT Licensing & Escrow Waterfall Modal */}
+      <OttLicensingModal
+        isOpen={isOttLicensingOpen}
+        onClose={() => setIsOttLicensingOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #76: Box Office Predictive & Occupancy Tracker Modal */}
+      <BoxOfficeTrackerModal
+        isOpen={isBoxOfficeTrackerOpen}
+        onClose={() => setIsBoxOfficeTrackerOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #77: Theatrical Marketing & Influencer Screener Vault Modal */}
+      <TheatricalCampaignModal
+        isOpen={isTheatricalCampaignOpen}
+        onClose={() => setIsTheatricalCampaignOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #78: International Film Festival & Awards Manager Modal */}
+      <FilmFestivalManagerModal
+        isOpen={isFilmFestivalManagerOpen}
+        onClose={() => setIsFilmFestivalManagerOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
 
 
     </>
