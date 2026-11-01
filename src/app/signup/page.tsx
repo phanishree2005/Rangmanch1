@@ -98,7 +98,7 @@ function SignupForm() {
         {/* Background Image with Deep Vignette */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <Image
-            src="/auth-cinema.jpg"
+            src="/images/banners/auth_cinema_studio.jpg"
             alt="Rangmanch Cinema Studio"
             fill
             priority

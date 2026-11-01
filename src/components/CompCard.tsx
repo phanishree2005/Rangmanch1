@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getPerformerGallery } from "@/lib/images";
 import {
   Rotate3d,
   Ruler,
@@ -51,6 +52,7 @@ export default function CompCard({
   ],
   cintaaVerified = true,
 }: CompCardProps) {
+  const activeHeadshots: string[] = (headshots && headshots.length > 0) ? headshots : getPerformerGallery(displayName);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [is360Active, setIs360Active] = useState(false);
   const [angleSlider, setAngleSlider] = useState(0);
@@ -110,7 +112,7 @@ export default function CompCard({
             {/* Main Headshot Image */}
             <div className="relative w-full h-full">
               <Image
-                src={headshots[activePhotoIndex] || "/photos/real_03.jpg"}
+                src={activeHeadshots[activePhotoIndex] || "/photos/real_03.jpg"}
                 alt={displayName}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -122,7 +124,7 @@ export default function CompCard({
 
             {/* Photo Angle Tag */}
             <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-mono text-[var(--gold-300)]">
-              {is360Active ? angleLabels[angleSlider] : `Angle ${activePhotoIndex + 1} of ${headshots.length}`}
+              {is360Active ? angleLabels[angleSlider] : `Angle ${activePhotoIndex + 1} of ${activeHeadshots.length}`}
             </div>
 
             {/* Bottom Caption on Photo */}
@@ -149,14 +151,14 @@ export default function CompCard({
                 onChange={(e) => {
                   const val = parseInt(e.target.value);
                   setAngleSlider(val);
-                  setActivePhotoIndex(val % headshots.length);
+                  setActivePhotoIndex(val % activeHeadshots.length);
                 }}
                 className="w-full accent-[var(--gold-500)] cursor-pointer"
               />
             </div>
           ) : (
             <div className="grid grid-cols-4 gap-2">
-              {headshots.map((shot, idx) => (
+              {activeHeadshots.map((shot: string, idx: number) => (
                 <button
                   key={idx}
                   onClick={() => setActivePhotoIndex(idx)}

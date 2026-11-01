@@ -9,11 +9,16 @@ import {
   CheckCircle2,
   Download,
   Play,
+  Pause,
   RotateCcw,
   Sparkles,
   Wifi,
   Film,
   FileSpreadsheet,
+  ShieldCheck,
+  Activity,
+  ArrowRight,
+  Eye,
 } from "lucide-react";
 
 interface DitLiveGradeModalProps {
@@ -28,16 +33,86 @@ export default function DitLiveGradeModal({
   defaultProject = "Antim Prahar - Unit 1 Principal Photography",
 }: DitLiveGradeModalProps) {
   const [activeStep, setActiveStep] = useState(1);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([1]);
+
+  // Step 1: Wireless Ingest & Timecode Jamming
   const [activeCamera, setActiveCamera] = useState("Cam A (ARRI Alexa 35)");
   const [wirelessLink, setWirelessLink] = useState("Teradek Bolt 4K MAX (Zero Delay)");
+  const [isJammingTc, setIsJammingTc] = useState(false);
+  const [tcLocked, setTcLocked] = useState(true);
+  const [timecodeStr, setTimecodeStr] = useState("10:42:18:21");
+
+  // Step 2: Live CDL & Exposure Scopes
   const [falseColorMode, setFalseColorMode] = useState("EL ZONE (Stop-Based IRE)");
   const [liveCdlSlope, setLiveCdlSlope] = useState(1.08);
   const [liveCdlOffset, setLiveCdlOffset] = useState(-0.02);
   const [liveCdlSat, setLiveCdlSat] = useState(1.12);
+  const [isApplyingLut, setIsApplyingLut] = useState(false);
+  const [cdlApplied, setCdlApplied] = useState(true);
+
+  // Step 3: QTAKE HD Assist & Playback
+  const [selectedTake, setSelectedTake] = useState("Take 03 [DIRECTOR PRINT]");
+  const [isPlayingTake, setIsPlayingTake] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState("1.0x Real-time");
+  const [splitWipe, setSplitWipe] = useState(50);
+
+  // Step 4: Bit-for-Bit Checksum & Turnaround
   const [checksumMethod, setChecksumMethod] = useState("xxHash64 + MD5 Dual-Verify");
+  const [isOffloading, setIsOffloading] = useState(false);
+  const [offloadProgress, setOffloadProgress] = useState(100);
+  const [offloadVerified, setOffloadVerified] = useState(true);
   const [downloadSuccess, setDownloadSuccess] = useState<string | null>(null);
 
   if (!isOpen) return null;
+
+  const markStepComplete = (stepNum: number) => {
+    if (!completedSteps.includes(stepNum)) {
+      setCompletedSteps((prev) => [...prev, stepNum]);
+    }
+  };
+
+  const handleJamTimecode = () => {
+    setIsJammingTc(true);
+    setTcLocked(false);
+    setTimeout(() => {
+      setIsJammingTc(false);
+      setTcLocked(true);
+      setTimecodeStr(
+        `10:42:${String(Math.floor(Math.random() * 40) + 10).padStart(2, "0")}:${String(
+          Math.floor(Math.random() * 24)
+        ).padStart(2, "0")}`
+      );
+      markStepComplete(1);
+    }, 1200);
+  };
+
+  const handleApplyCdl = () => {
+    setIsApplyingLut(true);
+    setCdlApplied(false);
+    setTimeout(() => {
+      setIsApplyingLut(false);
+      setCdlApplied(true);
+      markStepComplete(2);
+    }, 1000);
+  };
+
+  const handleRunOffload = () => {
+    setIsOffloading(true);
+    setOffloadProgress(0);
+    setOffloadVerified(false);
+
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 25;
+      setOffloadProgress(current);
+      if (current >= 100) {
+        clearInterval(interval);
+        setIsOffloading(false);
+        setOffloadVerified(true);
+        markStepComplete(4);
+      }
+    }, 280);
+  };
 
   const handleDownloadCdl = () => {
     const cdlXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -72,6 +147,7 @@ export default function DitLiveGradeModal({
 A001,A001_C001_1030_001,ARRI Alexa 35,ARRIRAW 4.6K OpenGate,4608x3164,00:03:24:12,18874368000,a9f834b2c129e011,4c12bbd8e256f199b0021c,VERIFIED_MATCH
 A001,A001_C002_1030_001,ARRI Alexa 35,ARRIRAW 4.6K OpenGate,4608x3164,00:01:45:00,9748480000,d821eef9012a44bb,e71299901adbb40023a887,VERIFIED_MATCH
 B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,24192000000,f711200389eef322,19aa7841bcdd76008123ef,VERIFIED_MATCH
+B001,B001_C002_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:02:12:08,15724800000,b8192aa00f2389cd,89ddaa102934ffeedd1123,VERIFIED_MATCH
 `;
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -90,7 +166,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
       <div
         className="modal-panel"
         style={{
-          maxWidth: "800px",
+          maxWidth: "840px",
           width: "100%",
           background: "linear-gradient(180deg, #1c150c 0%, #0d0a07 100%)",
           border: "1px solid rgba(245, 158, 11, 0.35)",
@@ -147,7 +223,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   textTransform: "uppercase",
                 }}
               >
-                On-Set DIT & Video Assist • Feature 73
+                On-Set DIT &amp; Video Assist • Feature 73 • Process Complete
               </div>
               <h2
                 style={{
@@ -157,8 +233,11 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   marginTop: "2px",
                 }}
               >
-                DIT Live Color Grading & Wireless Video Assist Hub
+                DIT Live Color Grading &amp; Wireless Video Assist Hub
               </h2>
+              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", marginTop: "2px" }}>
+                Production: <span style={{ color: "#f59e0b", fontWeight: 600 }}>{defaultProject}</span> • Pomfort Livegrade + QTAKE HD + Silverstack Lab
+              </div>
             </div>
           </div>
           <button
@@ -185,64 +264,65 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
             { num: 2, label: "Live CDL & Scope" },
             { num: 3, label: "QTAKE Assist" },
             { num: 4, label: "Checksum & Offload" },
-          ].map((s) => (
-            <button
-              key={s.num}
-              onClick={() => setActiveStep(s.num)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-                padding: "4px",
-                textAlign: "left",
-              }}
-            >
-              <div
+          ].map((s) => {
+            const isCompleted = completedSteps.includes(s.num);
+            const isCurrent = activeStep === s.num;
+            return (
+              <button
+                key={s.num}
+                onClick={() => setActiveStep(s.num)}
                 style={{
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  background:
-                    activeStep === s.num
+                  gap: "8px",
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "4px",
+                  textAlign: "left",
+                }}
+              >
+                <div
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    background: isCurrent
                       ? "#f59e0b"
-                      : activeStep > s.num
+                      : isCompleted
                       ? "rgba(245,158,11,0.2)"
                       : "rgba(255,255,255,0.05)",
-                  color:
-                    activeStep === s.num
+                    color: isCurrent
                       ? "#291b05"
-                      : activeStep > s.num
+                      : isCompleted
                       ? "#f59e0b"
                       : "rgba(255,255,255,0.4)",
-                  border:
-                    activeStep === s.num
+                    border: isCurrent
                       ? "none"
-                      : activeStep > s.num
+                      : isCompleted
                       ? "1px solid rgba(245,158,11,0.4)"
                       : "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                {activeStep > s.num ? "✓" : s.num}
-              </div>
-              <span
-                style={{
-                  fontSize: "12px",
-                  fontWeight: activeStep === s.num ? "600" : "400",
-                  color: activeStep === s.num ? "#f59e0b" : "rgba(255,255,255,0.5)",
-                }}
-              >
-                {s.label}
-              </span>
-            </button>
-          ))}
+                  }}
+                >
+                  {isCompleted && !isCurrent ? "✓" : s.num}
+                </div>
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: isCurrent ? "600" : "400",
+                    color: isCurrent ? "#f59e0b" : isCompleted ? "#ffffff" : "rgba(255,255,255,0.5)",
+                  }}
+                >
+                  {s.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Modal Body */}
@@ -263,7 +343,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 <Wifi size={22} color="#f59e0b" style={{ flexShrink: 0, marginTop: "2px" }} />
                 <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
                   <span style={{ fontWeight: "600", color: "#f59e0b" }}>
-                    Multi-Cam Wireless Ingest & Timecode Sync:
+                    Step 1 Process: Multi-Cam Wireless Ingest &amp; Timecode Sync
                   </span>{" "}
                   Receive 10-bit 4:2:2 zero-delay video streams from camera transmitters directly into
                   the DIT master station cart with embedded audio and Ambient Master Lockit timecode.
@@ -340,57 +420,128 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 </div>
               </div>
 
-              {/* Ingest signal health grid */}
+              {/* Ingest signal health grid with Timecode Jam action */}
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "12px",
+                  backgroundColor: "#18120b",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "14px",
+                  padding: "16px",
                 }}
               >
-                <div
-                  style={{
-                    backgroundColor: "#18120b",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "12px",
-                    padding: "14px",
-                  }}
-                >
-                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>RF Signal RSSI</div>
-                  <div style={{ fontSize: "16px", fontWeight: "bold", color: "#10b981", marginTop: "4px" }}>
-                    -42 dBm (100% Solid)
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                  <div style={{ fontSize: "13px", fontWeight: "600", color: "#ffffff" }}>
+                    Live RF Wireless Signal &amp; SMPTE Timecode Lock
                   </div>
-                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", marginTop: "4px" }}>Range: 450m LOS</div>
+                  <button
+                    onClick={handleJamTimecode}
+                    disabled={isJammingTc}
+                    style={{
+                      background: "rgba(245,158,11,0.15)",
+                      border: "1px solid rgba(245,158,11,0.3)",
+                      color: "#f59e0b",
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <RotateCcw size={13} className={isJammingTc ? "animate-spin" : ""} />
+                    {isJammingTc ? "Jamming Master ACN Clock..." : "⏱️ Jam SMPTE Timecode (Lockit)"}
+                  </button>
                 </div>
 
                 <div
                   style={{
-                    backgroundColor: "#18120b",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "12px",
-                    padding: "14px",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: "12px",
                   }}
                 >
-                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>Timecode Lock</div>
-                  <div style={{ fontSize: "16px", fontWeight: "bold", color: "#ffffff", marginTop: "4px" }}>
-                    10:42:18:21
+                  <div
+                    style={{
+                      backgroundColor: "#1f170e",
+                      border: "1px solid rgba(255,255,255,0.05)",
+                      borderRadius: "10px",
+                      padding: "12px",
+                    }}
+                  >
+                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>RF Signal RSSI</div>
+                    <div style={{ fontSize: "16px", fontWeight: "bold", color: "#10b981", marginTop: "4px" }}>
+                      -42 dBm (100% Solid)
+                    </div>
+                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", marginTop: "4px" }}>Range: 450m LOS</div>
                   </div>
-                  <div style={{ fontSize: "11px", color: "#f59e0b", marginTop: "4px" }}>Ambient ACN Jammed</div>
+
+                  <div
+                    style={{
+                      backgroundColor: "#1f170e",
+                      border: "1px solid rgba(255,255,255,0.05)",
+                      borderRadius: "10px",
+                      padding: "12px",
+                    }}
+                  >
+                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>Timecode Lock</div>
+                    <div style={{ fontSize: "16px", fontWeight: "bold", color: "#f59e0b", marginTop: "4px" }}>
+                      {timecodeStr}
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#10b981", marginTop: "4px" }}>Ambient ACN Jammed</div>
+                  </div>
+
+                  <div
+                    style={{
+                      backgroundColor: "#1f170e",
+                      border: "1px solid rgba(255,255,255,0.05)",
+                      borderRadius: "10px",
+                      padding: "12px",
+                    }}
+                  >
+                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>SDI Signal Payload</div>
+                    <div style={{ fontSize: "16px", fontWeight: "bold", color: "#ffffff", marginTop: "4px" }}>
+                      12G-SDI 4:2:2 10-bit
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#38bdf8", marginTop: "4px" }}>LogC4 / S-Gamut3.Cine</div>
+                  </div>
                 </div>
 
                 <div
                   style={{
-                    backgroundColor: "#18120b",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "12px",
-                    padding: "14px",
+                    marginTop: "14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    paddingTop: "10px",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
-                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>SDI Signal Payload</div>
-                  <div style={{ fontSize: "16px", fontWeight: "bold", color: "#ffffff", marginTop: "4px" }}>
-                    12G-SDI 4:2:2 10-bit
-                  </div>
-                  <div style={{ fontSize: "11px", color: "#38bdf8", marginTop: "4px" }}>LogC4 / S-Gamut3.Cine</div>
+                  <span style={{ fontSize: "11px", color: "#10b981", display: "flex", alignItems: "center", gap: "6px" }}>
+                    <CheckCircle2 size={14} /> Zero packet loss • Sound Devices 32-bit float audio sync confirmed
+                  </span>
+                  <button
+                    onClick={() => {
+                      markStepComplete(1);
+                      setActiveStep(2);
+                    }}
+                    style={{
+                      background: "#f59e0b",
+                      color: "#291b05",
+                      border: "none",
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    Lock Video Feed &amp; Proceed to CDL <ArrowRight size={14} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -412,7 +563,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 <SlidersHorizontal size={22} color="#f59e0b" style={{ flexShrink: 0, marginTop: "2px" }} />
                 <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
                   <span style={{ fontWeight: "600", color: "#f59e0b" }}>
-                    Pomfort Livegrade Studio ASC CDL Calibration:
+                    Step 2 Process: Pomfort Livegrade Studio ASC CDL Calibration
                   </span>{" "}
                   Adjust Slope, Offset, and Saturation in real time. Lut-boxes feed live calibrated looks
                   to the Director&apos;s and Cinematographer&apos;s OLED monitors without altering raw sensor negatives.
@@ -431,14 +582,40 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   gap: "16px",
                 }}
               >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ fontSize: "13px", fontWeight: "600", color: "#ffffff" }}>
+                    ASC CDL Calibration Sliders (FSI BoxIO LUT Box Live Broadcast)
+                  </div>
+                  <button
+                    onClick={handleApplyCdl}
+                    disabled={isApplyingLut}
+                    style={{
+                      background: "rgba(245,158,11,0.15)",
+                      border: "1px solid rgba(245,158,11,0.3)",
+                      color: "#f59e0b",
+                      padding: "4px 12px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <RotateCcw size={12} className={isApplyingLut ? "animate-spin" : ""} />
+                    {isApplyingLut ? "Broadcasting to OLEDs..." : "🎨 Broadcast Look to DP Monitor"}
+                  </button>
+                </div>
+
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.8)", marginBottom: "6px" }}>
-                    <span>Slope (Highlights & White Balance): <strong style={{ color: "#f59e0b" }}>{liveCdlSlope.toFixed(2)}</strong></span>
+                    <span>Slope (Highlights &amp; White Balance): <strong style={{ color: "#f59e0b" }}>{liveCdlSlope.toFixed(2)}</strong></span>
                     <button
                       onClick={() => setLiveCdlSlope(1.0)}
                       style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", background: "transparent", border: "none", cursor: "pointer" }}
                     >
-                      Reset
+                      Reset (1.00)
                     </button>
                   </div>
                   <input
@@ -454,12 +631,12 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
 
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "rgba(255,255,255,0.8)", marginBottom: "6px" }}>
-                    <span>Offset (Shadows & Toe Lift): <strong style={{ color: "#f59e0b" }}>{liveCdlOffset.toFixed(2)}</strong></span>
+                    <span>Offset (Shadows &amp; Toe Lift): <strong style={{ color: "#f59e0b" }}>{liveCdlOffset.toFixed(2)}</strong></span>
                     <button
                       onClick={() => setLiveCdlOffset(0.0)}
                       style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", background: "transparent", border: "none", cursor: "pointer" }}
                     >
-                      Reset
+                      Reset (0.00)
                     </button>
                   </div>
                   <input
@@ -480,7 +657,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                       onClick={() => setLiveCdlSat(1.0)}
                       style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", background: "transparent", border: "none", cursor: "pointer" }}
                     >
-                      Reset
+                      Reset (1.00)
                     </button>
                   </div>
                   <input
@@ -496,36 +673,78 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
               </div>
 
               {/* Exposure system */}
-              <div>
-                <label
+              <div
+                style={{
+                  backgroundColor: "#161009",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "14px",
+                  padding: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                <div>
+                  <label
+                    style={{
+                      fontSize: "12px",
+                      color: "rgba(255,255,255,0.7)",
+                      marginBottom: "6px",
+                      display: "block",
+                    }}
+                  >
+                    Exposure Monitoring Mode
+                  </label>
+                  <select
+                    value={falseColorMode}
+                    onChange={(e) => setFalseColorMode(e.target.value)}
+                    style={{
+                      width: "100%",
+                      backgroundColor: "#1f170e",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      borderRadius: "10px",
+                      padding: "10px 14px",
+                      color: "#ffffff",
+                      fontSize: "13px",
+                      outline: "none",
+                    }}
+                  >
+                    <option value="EL ZONE (Stop-Based IRE)">EL ZONE (Stop-Based Exposure by Ed Lachman ASC)</option>
+                    <option value="ARRI LogC4 False Color">ARRI Standard LogC4 False Color (18% Grey Green)</option>
+                    <option value="RGB Parade + Waveform">RGB Parade + 10-bit Vectorscope</option>
+                    <option value="Zebra 70% Skin Tone">Zebra Striping (70% South Asian Skin Tone Highlight)</option>
+                  </select>
+                </div>
+
+                <div
                   style={{
-                    fontSize: "12px",
-                    color: "rgba(255,255,255,0.7)",
-                    marginBottom: "6px",
-                    display: "block",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    paddingTop: "6px",
                   }}
                 >
-                  Exposure Monitoring Mode
-                </label>
-                <select
-                  value={falseColorMode}
-                  onChange={(e) => setFalseColorMode(e.target.value)}
-                  style={{
-                    width: "100%",
-                    backgroundColor: "#1f170e",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    borderRadius: "10px",
-                    padding: "10px 14px",
-                    color: "#ffffff",
-                    fontSize: "13px",
-                    outline: "none",
-                  }}
-                >
-                  <option value="EL ZONE (Stop-Based IRE)">EL ZONE (Stop-Based Exposure by Ed Lachman ASC)</option>
-                  <option value="ARRI LogC4 False Color">ARRI Standard LogC4 False Color (18% Grey Green)</option>
-                  <option value="RGB Parade + Waveform">RGB Parade + 10-bit Vectorscope</option>
-                  <option value="Zebra 70% Skin Tone">Zebra Striping (70% Caucasian / South Asian Skin Tone)</option>
-                </select>
+                  <button
+                    onClick={() => {
+                      markStepComplete(2);
+                      setActiveStep(3);
+                    }}
+                    style={{
+                      background: "#f59e0b",
+                      color: "#291b05",
+                      border: "none",
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    Confirm Grade &amp; Proceed to QTAKE <ArrowRight size={14} />
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -546,7 +765,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 <Video size={22} color="#f59e0b" style={{ flexShrink: 0, marginTop: "2px" }} />
                 <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
                   <span style={{ fontWeight: "600", color: "#f59e0b" }}>
-                    QTAKE HD Video Assist & Instant Review:
+                    Step 3 Process: QTAKE HD Video Assist &amp; Instant Review
                   </span>{" "}
                   Trigger automatic take recording, dual-camera synchronized split-screen review,
                   speed ramp playback (e.g. 150fps slow-motion check), and real-time chroma keying.
@@ -564,7 +783,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
                   <div style={{ fontSize: "13px", fontWeight: "600", color: "#ffffff" }}>
-                    QTAKE Live Playback Monitor (Take #03 Selected)
+                    QTAKE Live Playback Monitor ({selectedTake})
                   </div>
                   <span
                     style={{
@@ -593,12 +812,84 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   }}
                 >
                   <div style={{ textAlign: "center" }}>
-                    <Play size={36} color="#f59e0b" style={{ margin: "0 auto 8px" }} />
+                    <button
+                      onClick={() => setIsPlayingTake(!isPlayingTake)}
+                      style={{
+                        background: "rgba(245,158,11,0.2)",
+                        border: "1px solid rgba(245,158,11,0.5)",
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#f59e0b",
+                        margin: "0 auto 8px auto",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {isPlayingTake ? <Pause size={24} /> : <Play size={24} style={{ marginLeft: "3px" }} />}
+                    </button>
                     <div style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>
-                      Scene 42A - Take 03 [DIRECTOR PRINT]
+                      Scene 42A - {selectedTake}
                     </div>
                     <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", marginTop: "2px" }}>
-                      Cam A & Cam B Synchronized Dual-Stream (SMPTE 24.00fps)
+                      {isPlayingTake ? "▶ Playing in Sync: 00:01:24:18 / 00:03:12:00" : "❚❚ Paused on In-Point (Wipe Split Active)"}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Take Selection and Playback speed */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginTop: "14px" }}>
+                  <div>
+                    <label style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)", marginBottom: "4px", display: "block" }}>
+                      Select Active Take for Video Village
+                    </label>
+                    <select
+                      value={selectedTake}
+                      onChange={(e) => setSelectedTake(e.target.value)}
+                      style={{
+                        width: "100%",
+                        backgroundColor: "#1f170e",
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        borderRadius: "8px",
+                        padding: "8px 12px",
+                        color: "#ffffff",
+                        fontSize: "12px",
+                        outline: "none",
+                      }}
+                    >
+                      <option value="Take 01">Scene 42A - Take 01 (Soft Focus)</option>
+                      <option value="Take 02">Scene 42A - Take 02 (Mic Boom in Shot)</option>
+                      <option value="Take 03 [DIRECTOR PRINT]">Scene 42A - Take 03 [DIRECTOR PRINT ★]</option>
+                      <option value="Take 04">Scene 42A - Take 04 (Alternate Eyeline)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)", marginBottom: "4px", display: "block" }}>
+                      Playback Speed Ramp
+                    </label>
+                    <div style={{ display: "flex", gap: "6px" }}>
+                      {["0.5x Slo-Mo", "1.0x Real-time", "2.0x Fast"].map((spd) => (
+                        <button
+                          key={spd}
+                          onClick={() => setPlaybackSpeed(spd)}
+                          style={{
+                            flex: 1,
+                            padding: "8px 4px",
+                            borderRadius: "8px",
+                            backgroundColor: playbackSpeed === spd ? "#f59e0b" : "#1f170e",
+                            color: playbackSpeed === spd ? "#291b05" : "#ffffff",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {spd}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -606,7 +897,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginTop: "12px" }}>
                   <div style={{ backgroundColor: "#1d140a", padding: "10px", borderRadius: "8px" }}>
                     <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>Playback Speed</div>
-                    <div style={{ fontSize: "14px", fontWeight: "bold", color: "#f59e0b" }}>1.0x Real-time</div>
+                    <div style={{ fontSize: "14px", fontWeight: "bold", color: "#f59e0b" }}>{playbackSpeed}</div>
                   </div>
                   <div style={{ backgroundColor: "#1d140a", padding: "10px", borderRadius: "8px" }}>
                     <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>Wipe / Mix Mode</div>
@@ -616,6 +907,38 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                     <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>iPad Stream Cast</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: "#10b981" }}>6 Clients (QTAKE Cloud)</div>
                   </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginTop: "12px",
+                    paddingTop: "10px",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <button
+                    onClick={() => {
+                      markStepComplete(3);
+                      setActiveStep(4);
+                    }}
+                    style={{
+                      background: "#f59e0b",
+                      color: "#291b05",
+                      border: "none",
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    Confirm Assist &amp; Proceed to Offload <ArrowRight size={14} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -637,7 +960,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 <HardDrive size={22} color="#f59e0b" style={{ flexShrink: 0, marginTop: "2px" }} />
                 <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)", lineHeight: "1.5" }}>
                   <span style={{ fontWeight: "600", color: "#f59e0b" }}>
-                    Silverstack Lab Bit-for-Bit Checksum Offload:
+                    Step 4 Process: Silverstack Lab Bit-for-Bit Checksum Offload &amp; Delivery
                   </span>{" "}
                   Offload camera RAW cards simultaneously to RAID-5 Master, Clone A (Editorial), and
                   LTO-9 Tape with dual cryptographic checksum verification to prevent any corrupted frames.
@@ -695,7 +1018,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                 </select>
               </div>
 
-              {/* Offload status table */}
+              {/* Offload status table with Execute Offload button */}
               <div
                 style={{
                   backgroundColor: "#140e07",
@@ -704,32 +1027,102 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   padding: "16px",
                 }}
               >
-                <div style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", marginBottom: "10px" }}>
-                  Day 18 Offload Progress: 1.42 TB / 1.42 TB (100% Verified)
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                  <div style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff" }}>
+                    Day 18 Offload Progress: 1.42 TB / 1.42 TB (Dual-Verify Status)
+                  </div>
+                  <button
+                    onClick={handleRunOffload}
+                    disabled={isOffloading}
+                    style={{
+                      background: "rgba(245,158,11,0.15)",
+                      border: "1px solid rgba(245,158,11,0.3)",
+                      color: "#f59e0b",
+                      padding: "6px 14px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <RotateCcw size={12} className={isOffloading ? "animate-spin" : ""} />
+                    {isOffloading ? `Verifying Bits (${offloadProgress}%)...` : "💾 Execute Checksum Offload"}
+                  </button>
                 </div>
+
+                {isOffloading && (
+                  <div style={{ marginBottom: "14px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#f59e0b", marginBottom: "4px" }}>
+                      <span>Calculating xxHash64 bit-for-bit hashes...</span>
+                      <span>{offloadProgress}%</span>
+                    </div>
+                    <div style={{ width: "100%", height: "6px", backgroundColor: "#1e293b", borderRadius: "3px", overflow: "hidden" }}>
+                      <div style={{ width: `${offloadProgress}%`, height: "100%", backgroundColor: "#f59e0b", transition: "width 0.25s ease" }} />
+                    </div>
+                  </div>
+                )}
+
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 12px", backgroundColor: "#1f170e", borderRadius: "8px", fontSize: "12px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <CheckCircle2 size={14} color="#10b981" />
                       <span style={{ color: "#ffffff" }}>Master RAID-5 NVMe (OWC Jellyfish)</span>
                     </div>
-                    <span style={{ color: "#10b981", fontWeight: "600" }}>MATCH 100%</span>
+                    <span style={{ color: "#10b981", fontWeight: "600" }}>MATCH 100% (xxHash64)</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 12px", backgroundColor: "#1f170e", borderRadius: "8px", fontSize: "12px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <CheckCircle2 size={14} color="#10b981" />
                       <span style={{ color: "#ffffff" }}>Editorial Clone Shuttle SSD (SanDisk Pro-Blade)</span>
                     </div>
-                    <span style={{ color: "#10b981", fontWeight: "600" }}>MATCH 100%</span>
+                    <span style={{ color: "#10b981", fontWeight: "600" }}>MATCH 100% (MD5)</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 12px", backgroundColor: "#1f170e", borderRadius: "8px", fontSize: "12px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <CheckCircle2 size={14} color="#10b981" />
                       <span style={{ color: "#ffffff" }}>LTO-9 Magnetic Archive Tape (Quantum)</span>
                     </div>
-                    <span style={{ color: "#10b981", fontWeight: "600" }}>WRITTEN & SEALED</span>
+                    <span style={{ color: "#10b981", fontWeight: "600" }}>WRITTEN &amp; SEALED</span>
                   </div>
                 </div>
+
+                {offloadVerified && (
+                  <div
+                    style={{
+                      marginTop: "16px",
+                      padding: "12px 16px",
+                      borderRadius: "10px",
+                      backgroundColor: "rgba(16,185,129,0.1)",
+                      border: "1px solid rgba(16,185,129,0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <ShieldCheck size={20} color="#10b981" />
+                      <div>
+                        <div style={{ fontSize: "12px", fontWeight: "bold", color: "#10b981" }}>DIT SESSION VERIFIED &amp; SECURE OFFLOAD COMPLETE</div>
+                        <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)" }}>1.42 TB camera RAW data bit-verified across 3 independent media destinations.</div>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        padding: "3px 10px",
+                        borderRadius: "999px",
+                        backgroundColor: "#10b981",
+                        color: "#041e24",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      SECURE MATCH
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Action Buttons */}
@@ -813,7 +1206,10 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
           <div style={{ display: "flex", gap: "10px" }}>
             {activeStep < 4 ? (
               <button
-                onClick={() => setActiveStep((prev) => Math.min(4, prev + 1))}
+                onClick={() => {
+                  markStepComplete(activeStep);
+                  setActiveStep((prev) => Math.min(4, prev + 1));
+                }}
                 style={{
                   padding: "8px 22px",
                   borderRadius: "10px",
@@ -841,7 +1237,7 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
                   cursor: "pointer",
                 }}
               >
-                Close & Complete Session
+                Close &amp; Complete Session
               </button>
             )}
           </div>
@@ -850,4 +1246,3 @@ B001,B001_C001_1030_001,Sony Venice 2,X-OCN XT Full Frame,8192x4320,00:03:24:12,
     </div>
   );
 }
-

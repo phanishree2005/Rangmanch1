@@ -57,7 +57,7 @@ const PERFORMERS = [
   {
     id: "t-3",
     name: "Rohan Kapoor",
-    photo: "/photos/real_07.jpg",
+    photo: "/images/performers/actor_rohan.jpg",
     gender: "Male",
     ageMin: 24,
     ageMax: 32,
@@ -91,7 +91,7 @@ const PERFORMERS = [
   {
     id: "t-5",
     name: "Kabir Nair",
-    photo: "/photos/real_04.jpg",
+    photo: "/images/performers/actor_kabir.jpg",
     gender: "Male",
     ageMin: 23,
     ageMax: 30,
@@ -108,7 +108,7 @@ const PERFORMERS = [
   {
     id: "t-6",
     name: "Arjun Mehta",
-    photo: "/photos/real_09.jpg",
+    photo: "/images/performers/actor_arjun.jpg",
     gender: "Male",
     ageMin: 21,
     ageMax: 27,
@@ -125,7 +125,7 @@ const PERFORMERS = [
   {
     id: "t-7",
     name: "Priya Krishnamurthy",
-    photo: "/photos/female_03_headshot.jpg",
+    photo: "/images/performers/actress_priya.jpg",
     gender: "Female",
     ageMin: 22,
     ageMax: 28,
@@ -142,7 +142,7 @@ const PERFORMERS = [
   {
     id: "t-8",
     name: "Vikram Deshmukh",
-    photo: "/photos/real_08.jpg",
+    photo: "/images/performers/actor_vikram.jpg",
     gender: "Male",
     ageMin: 25,
     ageMax: 34,
@@ -159,7 +159,7 @@ const PERFORMERS = [
   {
     id: "t-9",
     name: "Aditya Verma",
-    photo: "/photos/real_15.jpg",
+    photo: "/images/performers/actor_aditya.jpg",
     gender: "Male",
     ageMin: 24,
     ageMax: 31,
@@ -176,7 +176,7 @@ const PERFORMERS = [
   {
     id: "t-10",
     name: "Devansh Roy",
-    photo: "/photos/real_17.jpg",
+    photo: "/images/performers/actor_devansh.jpg",
     gender: "Male",
     ageMin: 22,
     ageMax: 29,
@@ -193,7 +193,7 @@ const PERFORMERS = [
   {
     id: "t-11",
     name: "Kunal Joshi",
-    photo: "/photos/real_12.jpg",
+    photo: "/images/performers/actor_kunal.jpg",
     gender: "Male",
     ageMin: 26,
     ageMax: 35,
@@ -210,7 +210,7 @@ const PERFORMERS = [
   {
     id: "t-12",
     name: "Aryan Sengupta",
-    photo: "/photos/real_10.jpg",
+    photo: "/images/performers/actor_aryan.jpg",
     gender: "Male",
     ageMin: 23,
     ageMax: 30,

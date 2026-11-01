@@ -49,6 +49,11 @@ import CensorComplianceModal from "@/components/CensorComplianceModal";
 import ScreeningRoomModal from "@/components/ScreeningRoomModal";
 import IcvfxStageModal from "@/components/IcvfxStageModal";
 import DitLiveGradeModal from "@/components/DitLiveGradeModal";
+import DcpPackagingModal from "@/components/DcpPackagingModal";
+import OttLicensingModal from "@/components/OttLicensingModal";
+import BoxOfficeTrackerModal from "@/components/BoxOfficeTrackerModal";
+import TheatricalCampaignModal from "@/components/TheatricalCampaignModal";
+import FilmFestivalManagerModal from "@/components/FilmFestivalManagerModal";
 import {
   Search,
   MapPin,
@@ -119,7 +124,7 @@ const CASTINGS = [
     daysLeft: 21,
     escrow: true,
     verified: true,
-    image: "/photos/real_06.jpg",
+    image: "/images/casting-calls/project_antim_prahar.jpg",
     synopsis:
       "A sweeping period drama set in 1857, following a troupe of performers who secretly aid the independence movement through their art.",
     roles: [
@@ -145,7 +150,7 @@ const CASTINGS = [
     daysLeft: 15,
     escrow: true,
     verified: true,
-    image: "/photos/real_13.jpg",
+    image: "/images/casting-calls/project_hollow_nights.jpg",
     synopsis:
       "A forensic psychologist is pulled into a labyrinthine murder conspiracy within Delhi's underground art scene. 8-episode streaming series for Prime Video.",
     roles: [
@@ -170,7 +175,7 @@ const CASTINGS = [
     daysLeft: 6,
     escrow: true,
     verified: true,
-    image: "/photos/real_15.jpg",
+    image: "/images/casting-calls/project_tata_motors.jpg",
     synopsis:
       "A modern narrative about an evolving Indian family embracing tomorrow's mobility. Seeking genuine chemistry between lead couple — no prior ad experience required.",
     roles: [
@@ -195,7 +200,7 @@ const CASTINGS = [
     daysLeft: 29,
     escrow: false,
     verified: true,
-    image: "/photos/real_05.jpg",
+    image: "/images/casting-calls/project_manto.jpg",
     synopsis:
       "An original musical exploring themes of partition, love, and displacement across three generations. Requires trained vocalists and movement artists.",
     roles: [
@@ -338,6 +343,13 @@ export default function CastingCallsPage() {
   // Module 12 Features State (Features #72, #73)
   const [isIcvfxStageOpen, setIsIcvfxStageOpen] = useState(false);
   const [isDitLiveGradeOpen, setIsDitLiveGradeOpen] = useState(false);
+
+  // Module 13 Features State (Features #74, #75, #76, #77, #78)
+  const [isDcpPackagingOpen, setIsDcpPackagingOpen] = useState(false);
+  const [isOttLicensingOpen, setIsOttLicensingOpen] = useState(false);
+  const [isBoxOfficeTrackerOpen, setIsBoxOfficeTrackerOpen] = useState(false);
+  const [isTheatricalCampaignOpen, setIsTheatricalCampaignOpen] = useState(false);
+  const [isFilmFestivalManagerOpen, setIsFilmFestivalManagerOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -7266,6 +7278,730 @@ export default function CastingCallsPage() {
                     }}
                   >
                     LAUNCH DIT CART ➔
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          
+          {/* ══════════════════════════════════════════════════════════════
+              MODULE 13: THEATRICAL DISTRIBUTION, BOX OFFICE & OTT SYNDICATION SUITE (Features 74-78)
+              5 Dedicated Standalone Feature Cards (Completely Unmerged & Well-Structured)
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 13 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "#d4af61",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    ★ MODULE 13 • DISTRIBUTION, BOX OFFICE &amp; OTT SUITE
+                  </span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      padding: "3px 10px",
+                      borderRadius: "999px",
+                      backgroundColor: "rgba(16, 185, 129, 0.15)",
+                      color: "#6ee7b7",
+                      border: "1px solid rgba(16, 185, 129, 0.3)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    FEATURES 74-78 ACTIVE
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "26px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  margin: "8px 0 4px 0",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Theatrical Distribution, Box Office &amp; Global Syndication
+              </h2>
+              <p style={{ fontSize: "13px", color: "#8a8a9a", margin: 0, maxWidth: "780px" }}>
+                Enterprise cinema packaging suite covering DCI DCP master creation with KDM encryption, multi-territory OTT licensing waterfalls, real-time multiplex occupancy analytics, publicity vaults, and international festival submissions.
+              </p>
+            </div>
+
+            {/* 5 Dedicated Standalone Cards for Module 13 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 74 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(16, 185, 129, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#10b981";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(16, 185, 129, 0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(16,185,129,0.05) 100%)",
+                          border: "1px solid rgba(16,185,129,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#10b981",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Film size={22} />
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            fontFamily: "monospace",
+                            letterSpacing: "0.18em",
+                            color: "#10b981",
+                            textTransform: "uppercase",
+                            fontWeight: 700,
+                          }}
+                        >
+                          MODULE M074 • FEATURE 74
+                        </div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          DCI Cinema Package &amp; KDM Encryption
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(16,185,129,0.15)",
+                        color: "#6ee7b7",
+                        border: "1px solid rgba(16,185,129,0.3)",
+                      }}
+                    >
+                      SMPTE DCI 429
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    SMPTE 429 compliant DCI packaging with JPEG 2000 picture tracks, 24-bit 96kHz 5.1/7.1 LPCM and Dolby Atmos routing, and RSA-2048 theatrical KDM projection keys.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    PVR INOX / IMAX Ready
+                  </span>
+                  <button
+                    onClick={() => setIsDcpPackagingOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    BUILD DCI PACKAGE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 75 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(168, 85, 247, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#a855f7";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(168,85,247,0.05) 100%)",
+                          border: "1px solid rgba(168,85,247,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#a855f7",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Tv size={22} />
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            fontFamily: "monospace",
+                            letterSpacing: "0.18em",
+                            color: "#a855f7",
+                            textTransform: "uppercase",
+                            fontWeight: 700,
+                          }}
+                        >
+                          MODULE M075 • FEATURE 75
+                        </div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Multi-Territory OTT Licensing &amp; Escrow
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(168,85,247,0.15)",
+                        color: "#e9d5ff",
+                        border: "1px solid rgba(168,85,247,0.3)",
+                      }}
+                    >
+                      MINIMUM GUARANTEE
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Territory rights management across Netflix, Prime Video, Hotstar, and Zee5 with non-refundable Minimum Guarantee (MG) modeling and smart banking escrow waterfall disbursement.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    8-Week Theatrical Holdback
+                  </span>
+                  <button
+                    onClick={() => setIsOttLicensingOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    MODEL OTT ESCROW ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 76 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(234, 179, 8, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#eab308";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(234, 179, 8, 0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(234,179,8,0.2) 0%, rgba(234,179,8,0.05) 100%)",
+                          border: "1px solid rgba(234,179,8,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#eab308",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <TrendingUp size={22} />
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            fontFamily: "monospace",
+                            letterSpacing: "0.18em",
+                            color: "#eab308",
+                            textTransform: "uppercase",
+                            fontWeight: 700,
+                          }}
+                        >
+                          MODULE M076 • FEATURE 76
+                        </div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Box Office Predictive &amp; Occupancy
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(234,179,8,0.15)",
+                        color: "#fef08a",
+                        border: "1px solid rgba(234,179,8,0.3)",
+                      }}
+                    >
+                      TRADE VERIFIED
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Real-time theatrical occupancy analytics and advance ticket booking velocity tracking across Mumbai, Delhi-UP, and Nizam circuits with neural net box office projections.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Live EDI Ingest Active
+                  </span>
+                  <button
+                    onClick={() => setIsBoxOfficeTrackerOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    TRACK BOX OFFICE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 4: FEATURE 77 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(244, 63, 94, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#f43f5e";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(244, 63, 94, 0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(244,63,94,0.2) 0%, rgba(244,63,94,0.05) 100%)",
+                          border: "1px solid rgba(244,63,94,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#f43f5e",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Megaphone size={22} />
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            fontFamily: "monospace",
+                            letterSpacing: "0.18em",
+                            color: "#f43f5e",
+                            textTransform: "uppercase",
+                            fontWeight: 700,
+                          }}
+                        >
+                          MODULE M077 • FEATURE 77
+                        </div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Theatrical Marketing &amp; Influencer Vault
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(244,63,94,0.15)",
+                        color: "#fecdd3",
+                        border: "1px solid rgba(244,63,94,0.3)",
+                      }}
+                    >
+                      DRM WATERMARKED
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Multi-format outdoor print key art, 16:9 trailer &amp; 9:16 vertical reel reframing, and anti-piracy forensic watermarked screener token generation for entertainment critics.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    48h Press Embargo
+                  </span>
+                  <button
+                    onClick={() => setIsTheatricalCampaignOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    DEPLOY CAMPAIGN ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 5: FEATURE 78 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(99, 102, 241, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#6366f1";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(99,102,241,0.05) 100%)",
+                          border: "1px solid rgba(99,102,241,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#6366f1",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Trophy size={22} />
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            fontFamily: "monospace",
+                            letterSpacing: "0.18em",
+                            color: "#6366f1",
+                            textTransform: "uppercase",
+                            fontWeight: 700,
+                          }}
+                        >
+                          MODULE M078 • FEATURE 78
+                        </div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Film Festival &amp; Awards Manager
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(99,102,241,0.15)",
+                        color: "#c7d2fe",
+                        border: "1px solid rgba(99,102,241,0.3)",
+                      }}
+                    >
+                      FIAPF A-LIST JURY
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    A-List festival submissions manager (Cannes, Venice, Toronto, Busan, IFFI Goa) with SMPTE 428-7 multilingual timed-text subtitle mastering and secure jury screener tokens.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    World Premiere Eligible
+                  </span>
+                  <button
+                    onClick={() => setIsFilmFestivalManagerOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    ENTER FESTIVAL ➔
                   </button>
                 </div>
               </div>

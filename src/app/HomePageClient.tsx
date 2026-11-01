@@ -77,6 +77,33 @@ export default function HomePageClient() {
           padding: "80px 24px",
         }}
       >
+        {/* Background Cinema Soundstage Still with Deep Vignette */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 0,
+            opacity: 0.16,
+          }}
+        >
+          <Image
+            src="/images/homepage/hero_cinema_set.jpg"
+            alt="Rangmanch Cinema Production Soundstage"
+            fill
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(circle at center, transparent 0%, #040406 80%), linear-gradient(180deg, rgba(4,4,6,0.6) 0%, #040406 100%)",
+            }}
+          />
+        </div>
+
         {/* Background glows */}
         <div
           style={{
@@ -513,7 +540,7 @@ export default function HomePageClient() {
                   }}
                 >
                   <Image
-                    src={call.poster || call.organization?.logo || "/photos/real_06.jpg"}
+                    src={call.poster || call.organization?.logo || "/images/casting-calls/project_antim_prahar.jpg"}
                     alt={call.title}
                     fill
                     style={{ objectFit: "cover" }}
@@ -797,7 +824,7 @@ export default function HomePageClient() {
                 <Image
                   src={
                     talent.profilePhoto ||
-                    talent.portfolioPhotos[0] ||
+                    (talent.portfolioPhotos && talent.portfolioPhotos[0]) ||
                     "/photos/real_03.jpg"
                   }
                   alt={talent.displayName}
