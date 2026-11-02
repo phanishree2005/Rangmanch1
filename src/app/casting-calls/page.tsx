@@ -54,7 +54,11 @@ import OttLicensingModal from "@/components/OttLicensingModal";
 import BoxOfficeTrackerModal from "@/components/BoxOfficeTrackerModal";
 import TheatricalCampaignModal from "@/components/TheatricalCampaignModal";
 import FilmFestivalManagerModal from "@/components/FilmFestivalManagerModal";
+import BulkCrowdCastingModal from "@/components/BulkCrowdCastingModal";
+import WardrobeContinuityModal from "@/components/WardrobeContinuityModal";
+import DailyWrapPayrollModal from "@/components/DailyWrapPayrollModal";
 import {
+  Camera,
   Search,
   MapPin,
   Clock,
@@ -350,6 +354,9 @@ export default function CastingCallsPage() {
   const [isBoxOfficeTrackerOpen, setIsBoxOfficeTrackerOpen] = useState(false);
   const [isTheatricalCampaignOpen, setIsTheatricalCampaignOpen] = useState(false);
   const [isFilmFestivalManagerOpen, setIsFilmFestivalManagerOpen] = useState(false);
+  const [isBulkCrowdOpen, setIsBulkCrowdOpen] = useState(false);
+  const [isWardrobeContinuityOpen, setIsWardrobeContinuityOpen] = useState(false);
+  const [isDailyWrapPayrollOpen, setIsDailyWrapPayrollOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -7391,6 +7398,416 @@ export default function CastingCallsPage() {
                   >
                     ENTER FESTIVAL ➔
                   </button>
+                </div>              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
+              MODULE 14: BACKGROUND CASTING, ON-SET CONTINUITY & WRAP PAYROLL SUITE (Features 79, 80, 81)
+              3 Dedicated Standalone Feature Cards (Completely Unmerged & Well-Structured)
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 14 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "#d4af61",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    ★ MODULE 14 • BACKGROUND CASTING, CONTINUITY &amp; WRAP PAYROLL
+                  </span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      padding: "3px 10px",
+                      borderRadius: "999px",
+                      backgroundColor: "rgba(16, 185, 129, 0.15)",
+                      color: "#6ee7b7",
+                      border: "1px solid rgba(16, 185, 129, 0.3)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    3 STANDALONE PRODUCTION MODULES ACTIVE
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "26px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  margin: "8px 0 4px 0",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Crowd Atmosphere, Wardrobe Continuity &amp; Wrap Settlement
+              </h2>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#a0a0b0",
+                  margin: 0,
+                  lineHeight: 1.6,
+                }}
+              >
+                End-to-end background casting dispatch, AI costume and distress delta continuity matching, and CINTAA-compliant instant UPI wrap payroll settlement.
+              </p>
+            </div>
+
+            {/* Standalone Cards Grid for Module 14 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 79 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(15, 15, 24, 0.6)",
+                  border: "1px solid rgba(16, 185, 129, 0.25)",
+                  padding: "22px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(16,185,129,0.05) 100%)",
+                          border: "1px solid rgba(16,185,129,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#10b981",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Users size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Bulk Crowd &amp; Atmosphere Casting
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(16,185,129,0.15)",
+                        color: "#6ee7b7",
+                        border: "1px solid rgba(16,185,129,0.3)",
+                      }}
+                    >
+                      500+ DISPATCH
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Mass background performer dispatch for stadium, wedding, and period action scenes with demographic quota management, geofenced WhatsApp alerts, and digital QR gate passes.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    QR Gate Verified
+                  </span>
+                  <button
+                    onClick={() => setIsBulkCrowdOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    DISPATCH CROWD ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 80 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(15, 15, 24, 0.6)",
+                  border: "1px solid rgba(168, 85, 247, 0.25)",
+                  padding: "22px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(168,85,247,0.05) 100%)",
+                          border: "1px solid rgba(168,85,247,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#c084fc",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Camera size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Wardrobe Continuity &amp; Visual Matcher
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(168,85,247,0.15)",
+                        color: "#e9d5ff",
+                        border: "1px solid rgba(168,85,247,0.3)",
+                      }}
+                    >
+                      AI DELTA SCAN
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Multi-day shoot wardrobe continuity tracker with AI delta vision analysis for facial stubble, blood splatter geometry, costume distress levels, and script supervisor sign-off.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    99.1% Vision Tolerance
+                  </span>
+                  <button
+                    onClick={() => setIsWardrobeContinuityOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    VERIFY CONTINUITY ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 81 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(15, 15, 24, 0.6)",
+                  border: "1px solid rgba(245, 158, 11, 0.25)",
+                  padding: "22px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.05) 100%)",
+                          border: "1px solid rgba(245,158,11,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#fbbf24",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <CreditCard size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Daily Wrap Payroll &amp; Settlement
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(245,158,11,0.15)",
+                        color: "#fef08a",
+                        border: "1px solid rgba(245,158,11,0.3)",
+                      }}
+                    >
+                      CINTAA COMPLIANT
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Instant wrap-hour attendance audit, 1.5x overtime multiplier calculator, night meal allowance processing, and 1-click batch UPI escrow disbursement with zero payment arrears.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Instant UPI Wraparound
+                  </span>
+                  <button
+                    onClick={() => setIsDailyWrapPayrollOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    SETTLE WRAP PAY ➔
+                  </button>
                 </div>
               </div>
             </div>
@@ -7985,6 +8402,27 @@ export default function CastingCallsPage() {
       <FilmFestivalManagerModal
         isOpen={isFilmFestivalManagerOpen}
         onClose={() => setIsFilmFestivalManagerOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #79: Bulk Crowd & Atmosphere Casting Modal */}
+      <BulkCrowdCastingModal
+        isOpen={isBulkCrowdOpen}
+        onClose={() => setIsBulkCrowdOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #80: Wardrobe Continuity & Visual Matcher Modal */}
+      <WardrobeContinuityModal
+        isOpen={isWardrobeContinuityOpen}
+        onClose={() => setIsWardrobeContinuityOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #81: Daily Wrap Payroll & Instant Settlement Modal */}
+      <DailyWrapPayrollModal
+        isOpen={isDailyWrapPayrollOpen}
+        onClose={() => setIsDailyWrapPayrollOpen(false)}
         defaultProject={selectedPitchProject}
       />
 
