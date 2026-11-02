@@ -57,8 +57,11 @@ import FilmFestivalManagerModal from "@/components/FilmFestivalManagerModal";
 import BulkCrowdCastingModal from "@/components/BulkCrowdCastingModal";
 import WardrobeContinuityModal from "@/components/WardrobeContinuityModal";
 import DailyWrapPayrollModal from "@/components/DailyWrapPayrollModal";
+import MinorWelfareModal from "@/components/MinorWelfareModal";
+import SpecialtyStuntRosterModal from "@/components/SpecialtyStuntRosterModal";
 import {
   Camera,
+  HeartHandshake,
   Search,
   MapPin,
   Clock,
@@ -357,6 +360,8 @@ export default function CastingCallsPage() {
   const [isBulkCrowdOpen, setIsBulkCrowdOpen] = useState(false);
   const [isWardrobeContinuityOpen, setIsWardrobeContinuityOpen] = useState(false);
   const [isDailyWrapPayrollOpen, setIsDailyWrapPayrollOpen] = useState(false);
+  const [isMinorWelfareOpen, setIsMinorWelfareOpen] = useState(false);
+  const [isSpecialtyStuntOpen, setIsSpecialtyStuntOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -7454,7 +7459,7 @@ export default function CastingCallsPage() {
                       fontWeight: 600,
                     }}
                   >
-                    3 STANDALONE PRODUCTION MODULES ACTIVE
+                    5 STANDALONE PRODUCTION MODULES ACTIVE
                   </span>
                 </div>
               </div>
@@ -7795,8 +7800,7 @@ export default function CastingCallsPage() {
                 >
                   <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
                     Instant UPI Wraparound
-                  </span>
-                  <button
+                  </span>                  <button
                     onClick={() => setIsDailyWrapPayrollOpen(true)}
                     className="btn-cinema-gold"
                     style={{
@@ -7807,6 +7811,220 @@ export default function CastingCallsPage() {
                     }}
                   >
                     SETTLE WRAP PAY ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 4: FEATURE 82 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(15, 15, 24, 0.6)",
+                  border: "1px solid rgba(20, 184, 166, 0.25)",
+                  padding: "22px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(20,184,166,0.2) 0%, rgba(20,184,166,0.05) 100%)",
+                          border: "1px solid rgba(20,184,166,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#2dd4bf",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <HeartHandshake size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Minor Artist Chaperone &amp; Child Welfare
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(20,184,166,0.15)",
+                        color: "#99f6e4",
+                        border: "1px solid rgba(20,184,166,0.3)",
+                      }}
+                    >
+                      POCSO CERTIFIED
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Child performer welfare compliance suite with statutory state labor permits, certified guardian and chaperone check-ins, mandatory 2h on-set schooling, and a strict 4-hour camera cap.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    4h Max Shift Cap
+                  </span>
+                  <button
+                    onClick={() => setIsMinorWelfareOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    AUDIT CHILD WELFARE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 5: FEATURE 83 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(15, 15, 24, 0.6)",
+                  border: "1px solid rgba(239, 68, 68, 0.25)",
+                  padding: "22px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.05) 100%)",
+                          border: "1px solid rgba(239,68,68,0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#f87171",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Flame size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Specialty Stunt &amp; Precision Roster
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(239,68,68,0.15)",
+                        color: "#fca5a5",
+                        border: "1px solid rgba(239,68,68,0.3)",
+                      }}
+                    >
+                      MSAA GUILD INSURED
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    On-demand booking for precision car chase drivers, high fall specialists, wire martial artists, and fire burns with MSAA licenses and ₹1 Crore instant hazard medical underwriting.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹1 Cr Stunt Cover
+                  </span>
+                  <button
+                    onClick={() => setIsSpecialtyStuntOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    BOOK STUNT TALENT ➔
                   </button>
                 </div>
               </div>
@@ -8423,6 +8641,20 @@ export default function CastingCallsPage() {
       <DailyWrapPayrollModal
         isOpen={isDailyWrapPayrollOpen}
         onClose={() => setIsDailyWrapPayrollOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #82: Minor Artist Chaperone & On-Set Child Welfare Modal */}
+      <MinorWelfareModal
+        isOpen={isMinorWelfareOpen}
+        onClose={() => setIsMinorWelfareOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #83: Specialty Stunt & Precision Performer Roster Modal */}
+      <SpecialtyStuntRosterModal
+        isOpen={isSpecialtyStuntOpen}
+        onClose={() => setIsSpecialtyStuntOpen(false)}
         defaultProject={selectedPitchProject}
       />
 
