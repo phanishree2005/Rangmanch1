@@ -59,8 +59,12 @@ import WardrobeContinuityModal from "@/components/WardrobeContinuityModal";
 import DailyWrapPayrollModal from "@/components/DailyWrapPayrollModal";
 import MinorWelfareModal from "@/components/MinorWelfareModal";
 import SpecialtyStuntRosterModal from "@/components/SpecialtyStuntRosterModal";
+import AuditionApplyModal from "@/components/AuditionApplyModal";
 import {
   Camera,
+  Eye,
+  UserCheck,
+  Briefcase,
   HeartHandshake,
   Search,
   MapPin,
@@ -278,7 +282,101 @@ const TYPES = [
   { id: "commercial", label: "Commercials", icon: Megaphone },
 ];
 
+
+const STUDIO_PROJECTS = [
+  {
+    id: "antim_prahar",
+    title: "Antim Prahar",
+    type: "Action Crime Feature Film",
+    stage: "Principal Photography (Day 14/48)",
+    location: "Mumbai / Hyderabad",
+    budget: "₹42.0 Crore",
+    director: "Vikramaditya Motwane",
+    banner: "Phantom Studios × Rangmanch",
+    color: "#d4af61",
+    statusPill: "SHOOTING ACTIVE",
+    castCount: "42 Roles",
+    activeSides: "8 Sides Encrypted",
+  },
+  {
+    id: "mirabai_retold",
+    title: "Mirabai Retold",
+    type: "Biographical Period Drama",
+    stage: "Pre-Production & Look-Tests",
+    location: "Rajasthan / Vrindavan",
+    budget: "₹28.5 Crore",
+    director: "Shonali Bose",
+    banner: "NFDC × Cinestaan Film Company",
+    color: "#c084fc",
+    statusPill: "PRE-PRODUCTION",
+    castCount: "18 Roles",
+    activeSides: "4 Sides Encrypted",
+  },
+  {
+    id: "deccan_empire",
+    title: "Deccan Empire",
+    type: "Historical Action Thriller",
+    stage: "Post-Production & VFX Dailies",
+    location: "Hampi / Ramoji Film City",
+    budget: "₹65.0 Crore",
+    director: "S.S. Rajamouli Unit",
+    banner: "Arka Mediaworks",
+    color: "#38bdf8",
+    statusPill: "POST & VFX",
+    castCount: "85 Roles",
+    activeSides: "12 Sides Encrypted",
+  },
+  {
+    id: "bandra_nights",
+    title: "Bandra Nights",
+    type: "Contemporary OTT Drama Series",
+    stage: "Active Ensemble Casting",
+    location: "Mumbai / Bandra West",
+    budget: "₹16.0 Crore",
+    director: "Zoya Akhtar / Reema Kagti",
+    banner: "Tiger Baby Films",
+    color: "#ec4899",
+    statusPill: "CASTING ACTIVE",
+    castCount: "24 Roles",
+    activeSides: "6 Sides Encrypted",
+  },
+];
+
+const PHASES = [
+  { id: "all", label: "All 56 Tools", count: 56, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
+  { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
+  { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
+  { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
+  { id: "script_post", label: "Script Room, VFX & Dailies", count: 10, modules: [10, 11] },
+  { id: "onset_safety", label: "On-Set, ICVFX & Continuity", count: 7, modules: [12, 14] },
+  { id: "distribution", label: "Theatrical, Box Office & OTT", count: 5, modules: [13] },
+];
+
+const ROLE_GENDERS = [
+  { id: "all", label: "All Roles" },
+  { id: "female", label: "Female" },
+  { id: "male", label: "Male" },
+];
+
+const AGE_BRACKETS = [
+  { id: "all", label: "All Ages" },
+  { id: "18-25", label: "18–25" },
+  { id: "25-35", label: "25–35" },
+  { id: "35-50", label: "35–50" },
+  { id: "child", label: "Child / Teen" },
+];
+
 export default function CastingCallsPage() {
+  // ── PORTAL ARCHITECTURE STATE ──
+  const [activePortalTab, setActivePortalTab] = useState<"castings" | "director_suite" | "all">("castings");
+  const [selectedProjectId, setSelectedProjectId] = useState("antim_prahar");
+  const [selectedPhase, setSelectedPhase] = useState("all");
+  const [toolSearch, setToolSearch] = useState("");
+  const [selectedGender, setSelectedGender] = useState("all");
+  const [selectedAge, setSelectedAge] = useState("all");
+  const [selectedCastingForApply, setSelectedCastingForApply] = useState<typeof CASTINGS[0] | null>(null);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+
   const [search, setSearch] = useState("");
   const [type, setType] = useState("all");
   const [onlyEscrow, setOnlyEscrow] = useState(false);
@@ -376,9 +474,36 @@ export default function CastingCallsPage() {
       const matchEscrow = !onlyEscrow || c.escrow;
       const matchLang =
         language === "All Languages" || c.language.includes(language);
-      return matchSearch && matchType && matchEscrow && matchLang;
+      
+      const matchGender =
+        selectedGender === "all" ||
+        c.roles.some((r) => r.gender.toLowerCase().includes(selectedGender.toLowerCase()));
+
+      const matchAge =
+        selectedAge === "all" ||
+        c.roles.some((r) => {
+          if (selectedAge === "18-25") return r.age.includes("18") || r.age.includes("24") || r.age.includes("25");
+          if (selectedAge === "25-35") return r.age.includes("25") || r.age.includes("30") || r.age.includes("35") || r.age.includes("28");
+          if (selectedAge === "35-50") return r.age.includes("35") || r.age.includes("40") || r.age.includes("45") || r.age.includes("50");
+          if (selectedAge === "child") return r.age.includes("8") || r.age.includes("10") || r.age.includes("12") || r.age.includes("14") || r.age.includes("Child");
+          return true;
+        });
+
+      return matchSearch && matchType && matchEscrow && matchLang && matchGender && matchAge;
     });
-  }, [search, type, onlyEscrow, language]);
+  }, [search, type, onlyEscrow, language, selectedGender, selectedAge]);
+
+  const currentProjectObj = STUDIO_PROJECTS.find((p) => p.id === selectedProjectId) || STUDIO_PROJECTS[0];
+
+  const isModuleVisible = (modNum: number, keywords: string) => {
+    const matchesPhase =
+      selectedPhase === "all" ||
+      PHASES.find((p) => p.id === selectedPhase)?.modules.includes(modNum);
+    const q = toolSearch.toLowerCase().trim();
+    const matchesSearch = !q || keywords.toLowerCase().includes(q);
+    return matchesPhase && matchesSearch;
+  };
+
 
   return (
     <>
@@ -491,8 +616,351 @@ export default function CastingCallsPage() {
             </div>
           </div>
 
-          {/* ── CASTING DIRECTOR SUITE • MODULE 3 (FEATURES 28, 29, 30) ── */}
-          <section style={{ marginBottom: "36px" }}>
+          
+          {/* ══════════════════════════════════════════════════════════════
+              PORTAL VIEW MODE SWITCHER (Actor Audition Portal vs Director Suite)
+          ══════════════════════════════════════════════════════════════ */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "12px",
+              padding: "12px 18px",
+              backgroundColor: "rgba(10, 10, 16, 0.8)",
+              border: "1px solid rgba(212, 175, 97, 0.3)",
+              borderRadius: "16px",
+              marginBottom: "32px",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <button
+                onClick={() => setActivePortalTab("castings")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "10px 20px",
+                  borderRadius: "10px",
+                  border:
+                    activePortalTab === "castings"
+                      ? "1px solid #d4af61"
+                      : "1px solid rgba(255,255,255,0.08)",
+                  backgroundColor:
+                    activePortalTab === "castings"
+                      ? "rgba(212,175,97,0.18)"
+                      : "transparent",
+                  color: activePortalTab === "castings" ? "#ffffff" : "#9ca3af",
+                  fontSize: "12px",
+                  fontWeight: activePortalTab === "castings" ? 700 : 500,
+                  fontFamily: "monospace",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                <span>🎭</span>
+                <span>OPEN CASTING CALLS ({filtered.length})</span>
+                {activePortalTab === "castings" && (
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      backgroundColor: "#d4af61",
+                    }}
+                  />
+                )}
+              </button>
+
+              <button
+                onClick={() => setActivePortalTab("director_suite")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "10px 20px",
+                  borderRadius: "10px",
+                  border:
+                    activePortalTab === "director_suite"
+                      ? "1px solid #d4af61"
+                      : "1px solid rgba(255,255,255,0.08)",
+                  backgroundColor:
+                    activePortalTab === "director_suite"
+                      ? "rgba(212,175,97,0.18)"
+                      : "transparent",
+                  color: activePortalTab === "director_suite" ? "#ffffff" : "#9ca3af",
+                  fontSize: "12px",
+                  fontWeight: activePortalTab === "director_suite" ? 700 : 500,
+                  fontFamily: "monospace",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                <span>🎬</span>
+                <span>STUDIO DIRECTOR SUITE (56 TOOLS)</span>
+                {activePortalTab === "director_suite" && (
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      backgroundColor: "#d4af61",
+                    }}
+                  />
+                )}
+              </button>
+
+              <button
+                onClick={() => setActivePortalTab("all")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "10px 16px",
+                  borderRadius: "10px",
+                  border:
+                    activePortalTab === "all"
+                      ? "1px solid #d4af61"
+                      : "1px solid rgba(255,255,255,0.08)",
+                  backgroundColor:
+                    activePortalTab === "all"
+                      ? "rgba(212,175,97,0.18)"
+                      : "transparent",
+                  color: activePortalTab === "all" ? "#ffffff" : "#6b7280",
+                  fontSize: "11px",
+                  fontWeight: activePortalTab === "all" ? 700 : 500,
+                  fontFamily: "monospace",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                <span>✦</span>
+                <span>UNIFIED OVERVIEW</span>
+              </button>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <span
+                style={{
+                  fontSize: "10px",
+                  fontFamily: "monospace",
+                  padding: "3px 10px",
+                  borderRadius: "999px",
+                  backgroundColor: "rgba(16,185,129,0.15)",
+                  color: "#6ee7b7",
+                  border: "1px solid rgba(16,185,129,0.3)",
+                }}
+              >
+                CINTAA ESCROW ACTIVE
+              </span>
+            </div>
+          </div>
+
+          {/* ══════════════════════════════════════════════════════════════
+              DIRECTOR SUITE: MASTER ACTIVE PROJECT BAR & PHASE NAVIGATION
+          ══════════════════════════════════════════════════════════════ */}
+          <div
+            style={{
+              display:
+                activePortalTab === "director_suite" || activePortalTab === "all"
+                  ? "block"
+                  : "none",
+              marginBottom: "32px",
+            }}
+          >
+            {/* Master Project Context Selector */}
+            <div
+              style={{
+                borderRadius: "18px",
+                backgroundColor: "rgba(14, 14, 22, 0.9)",
+                border: "1px solid rgba(212, 175, 97, 0.35)",
+                padding: "20px 24px",
+                marginBottom: "20px",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "14px",
+                  marginBottom: "14px",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      letterSpacing: "0.2em",
+                      color: "#d4af61",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                      marginBottom: "6px",
+                    }}
+                  >
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 56 TOOLS)
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+                    <select
+                      value={selectedProjectId}
+                      onChange={(e) => {
+                        setSelectedProjectId(e.target.value);
+                        const p = STUDIO_PROJECTS.find((x) => x.id === e.target.value);
+                        if (p) setSelectedPitchProject(p.title);
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: "10px",
+                        backgroundColor: "#07070b",
+                        border: "1px solid #d4af61",
+                        color: "#ffffff",
+                        fontSize: "14px",
+                        fontWeight: 700,
+                        fontFamily: "monospace",
+                        cursor: "pointer",
+                        outline: "none",
+                      }}
+                    >
+                      {STUDIO_PROJECTS.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          🎬 {p.title} — {p.type}
+                        </option>
+                      ))}
+                    </select>
+                    <span
+                      style={{
+                        padding: "4px 10px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212,175,97,0.15)",
+                        color: "#d4af61",
+                        border: "1px solid rgba(212,175,97,0.3)",
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        fontFamily: "monospace",
+                      }}
+                    >
+                      {currentProjectObj.statusPill}
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace" }}>DIRECTOR &amp; BANNER</div>
+                    <div style={{ fontSize: "12px", color: "#ffffff", fontWeight: 600 }}>{currentProjectObj.director} • {currentProjectObj.banner}</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace" }}>SHOOT STAGE</div>
+                    <div style={{ fontSize: "12px", color: "#38bdf8", fontWeight: 600 }}>{currentProjectObj.stage}</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace" }}>ESCROW BUDGET</div>
+                    <div style={{ fontSize: "12px", color: "#10b981", fontWeight: 700 }}>{currentProjectObj.budget}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sticky Phase Navigation Ribbon with Tool Search */}
+            <div
+              style={{
+                borderRadius: "16px",
+                backgroundColor: "rgba(10, 10, 16, 0.95)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                padding: "14px 18px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "12px",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.6)",
+              }}
+            >
+              {/* Phase Chips */}
+              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                {PHASES.map((phase) => {
+                  const isSelected = selectedPhase === phase.id;
+                  return (
+                    <button
+                      key={phase.id}
+                      onClick={() => setSelectedPhase(phase.id)}
+                      style={{
+                        padding: "7px 14px",
+                        borderRadius: "8px",
+                        border: isSelected
+                          ? "1px solid #d4af61"
+                          : "1px solid rgba(255,255,255,0.06)",
+                        backgroundColor: isSelected
+                          ? "rgba(212,175,97,0.18)"
+                          : "rgba(255,255,255,0.03)",
+                        color: isSelected ? "#ffffff" : "#9ca3af",
+                        fontSize: "11px",
+                        fontFamily: "monospace",
+                        fontWeight: isSelected ? 700 : 500,
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      {phase.label} ({phase.count})
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tool Search Input */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "6px 12px",
+                  backgroundColor: "#07070b",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: "8px",
+                  minWidth: "260px",
+                }}
+              >
+                <Search size={14} color="#606070" />
+                <input
+                  type="text"
+                  value={toolSearch}
+                  onChange={(e) => setToolSearch(e.target.value)}
+                  placeholder="Quick find tool e.g. KDM, stunt, payroll..."
+                  style={{
+                    background: "none",
+                    border: "none",
+                    outline: "none",
+                    color: "#ffffff",
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    width: "100%",
+                  }}
+                />
+                {toolSearch && (
+                  <button
+                    onClick={() => setToolSearch("")}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#6b7280",
+                      fontSize: "10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+{/* ── CASTING DIRECTOR SUITE • MODULE 3 (FEATURES 28, 29, 30) ── */}
+          <section style={{ marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(3, "pitchbook callback dispatcher talent archive roster director command center") ? "block" : "none" }}>
             <div
               style={{
                 display: "flex",
@@ -520,7 +988,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ✦ MODULE 3 • CASTING DIRECTOR COMMAND CENTER
+                    CASTING DIRECTOR COMMAND CENTER
                   </span>
                   <span
                     style={{
@@ -911,7 +1379,7 @@ export default function CastingCallsPage() {
           </section>
 
           {/* ── CASTING CALL & PRODUCTION PUBLISHER • MODULE 4 (FEATURES 31, 32, 33, 34, 35) ── */}
-          <section style={{ marginBottom: "36px" }}>
+          <section style={{ marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(4, "role breakdown project codename script sides encryption shooting schedule escrow budget calculator publisher") ? "block" : "none" }}>
             <div
               style={{
                 display: "flex",
@@ -939,7 +1407,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ✦ MODULE 4 • CASTING CALL &amp; PRODUCTION PUBLISHER
+                    CASTING CALL &amp; PRODUCTION PUBLISHER
                   </span>
                   <span
                     style={{
@@ -1563,6 +2031,7 @@ export default function CastingCallsPage() {
           <section
             style={{
               marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(5, "kanban pipeline applicant intelligence audition rating batch feedback ensemble chemistry diversity analytics") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -1602,7 +2071,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ✦ MODULE 5 • CASTING PIPELINE &amp; APPLICANT INTELLIGENCE
+                    CASTING PIPELINE &amp; APPLICANT INTELLIGENCE
                   </span>
                   <span
                     style={{
@@ -2224,6 +2693,7 @@ export default function CastingCallsPage() {
           <section
             style={{
               marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(6, "virtual callback room waiting lobby teleprompter venue geofence emergency sos anti-casting couch escrow shield") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -2263,7 +2733,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ✦ MODULE 6 • VIRTUAL CALLBACK SUITE &amp; ESCROW SAFETY SHIELD
+                    VIRTUAL CALLBACK SUITE &amp; ESCROW SAFETY SHIELD
                   </span>
                   <span
                     style={{
@@ -2885,6 +3355,7 @@ export default function CastingCallsPage() {
           <section
             style={{
               marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(7, "profile readiness score automated role recommendation booking availability calendar whatsapp audition bot spotlight arena voiceover dubbing") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(212, 175, 97, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -2924,7 +3395,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ✦ MODULE 7 • TALENT ECOSYSTEM, DISCOVERY &amp; DUBBING SUITE
+                    TALENT ECOSYSTEM, DISCOVERY &amp; DUBBING SUITE
                   </span>
                   <span
                     style={{
@@ -3661,7 +4132,7 @@ export default function CastingCallsPage() {
           ════════════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              marginBottom: "36px",
+              marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(8, "digital contract generator call sheet expense reimbursement minor work permit residuals calculator guild legal telemetry") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(212, 175, 97, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -3701,7 +4172,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ★ MODULE 8 • GUILD LEGAL, DIGITAL CONTRACTS &amp; ESCROW TELEMETRY
+                    GUILD LEGAL, DIGITAL CONTRACTS &amp; ESCROW TELEMETRY
                   </span>
                   <span
                     style={{
@@ -3748,7 +4219,7 @@ export default function CastingCallsPage() {
                   border: "1px solid rgba(212, 175, 97, 0.2)",
                 }}
               >
-                ● 5 UNMERGED STANDALONE MODULES ACTIVE
+                ● 5 PRODUCTION TOOLS ONLINE
               </div>
             </div>
 
@@ -4348,7 +4819,7 @@ export default function CastingCallsPage() {
           ════════════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              marginBottom: "36px",
+              marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(9, "virtual look test intimacy protocol dialect coach stunt safety star power analytics ai production studio") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(212, 175, 97, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -4388,7 +4859,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ★ MODULE 9 • AI PRODUCTION STUDIO, LOOK-TEST &amp; PERFORMANCE INTELLIGENCE
+                    AI PRODUCTION STUDIO, LOOK-TEST &amp; PERFORMANCE INTELLIGENCE
                   </span>
                   <span
                     style={{
@@ -4435,7 +4906,7 @@ export default function CastingCallsPage() {
                   border: "1px solid rgba(212, 175, 97, 0.2)",
                 }}
               >
-                ● 5 UNMERGED STANDALONE MODULES ACTIVE
+                ● 5 PRODUCTION TOOLS ONLINE
               </div>
             </div>
 
@@ -5035,7 +5506,7 @@ export default function CastingCallsPage() {
           ════════════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              marginBottom: "36px",
+              marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(10, "script versioning dialogue table read character arc mapping script breakdown music cue sheet collaboration") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(212, 175, 97, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -5075,7 +5546,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ★ MODULE 10 • SCRIPT &amp; WRITING ROOM COLLABORATION SUITE
+                    SCRIPT &amp; WRITING ROOM COLLABORATION SUITE
                   </span>
                   <span
                     style={{
@@ -5122,7 +5593,7 @@ export default function CastingCallsPage() {
                   border: "1px solid rgba(212, 175, 97, 0.2)",
                 }}
               >
-                ● 5 UNMERGED STANDALONE MODULES ACTIVE
+                ● 5 PRODUCTION TOOLS ONLINE
               </div>
             </div>
 
@@ -5722,7 +6193,7 @@ export default function CastingCallsPage() {
           ════════════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              marginBottom: "36px",
+              marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(11, "vfx tracking color grade lut adr studio censor compliance screening room drm post-production") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(212, 175, 97, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -5762,7 +6233,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ★ MODULE 11 • POST-PRODUCTION, VFX &amp; SCREENING ROOM SUITE
+                    POST-PRODUCTION, VFX &amp; SCREENING ROOM SUITE
                   </span>
                   <span
                     style={{
@@ -5809,7 +6280,7 @@ export default function CastingCallsPage() {
                   border: "1px solid rgba(212, 175, 97, 0.2)",
                 }}
               >
-                ● 5 UNMERGED STANDALONE MODULES ACTIVE
+                ● 5 PRODUCTION TOOLS ONLINE
               </div>
             </div>
 
@@ -6409,7 +6880,7 @@ export default function CastingCallsPage() {
           ══════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              marginBottom: "36px",
+              marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(12, "led wall icvfx unreal stage sync dit live color grading video assist hub virtual production") ? "block" : "none",
               padding: "24px",
               borderRadius: "22px",
               background: "linear-gradient(180deg, rgba(6, 182, 212, 0.05) 0%, rgba(13, 13, 22, 0.9) 100%)",
@@ -6449,7 +6920,7 @@ export default function CastingCallsPage() {
                       fontWeight: 700,
                     }}
                   >
-                    ★ MODULE 12 • VIRTUAL PRODUCTION & DIT SUITE
+                    VIRTUAL PRODUCTION &amp; ON-SET DIT SUITE
                   </span>
                   <span
                     style={{
@@ -6498,7 +6969,7 @@ export default function CastingCallsPage() {
                   border: "1px solid rgba(6, 182, 212, 0.25)",
                 }}
               >
-                ★ 2 UNMERGED STANDALONE MODULES ACTIVE
+                ★ 2 CALIBRATED ON-SET TOOLS
               </div>
             </div>
 
@@ -6753,6 +7224,7 @@ export default function CastingCallsPage() {
             style={{
               marginBottom: "36px",
               borderRadius: "24px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(13, "dci cinema package kdm encryption ott licensing escrow box office predictive theatrical campaign film festival awards manager") ? "block" : "none", 
               backgroundColor: "rgba(10, 10, 16, 0.75)",
               border: "1px solid rgba(212, 175, 97, 0.25)",
               padding: "28px",
@@ -6781,7 +7253,7 @@ export default function CastingCallsPage() {
                       fontFamily: "monospace",
                     }}
                   >
-                    ★ MODULE 13 • DISTRIBUTION, BOX OFFICE &amp; OTT SUITE
+                    THEATRICAL DISTRIBUTION &amp; OTT SUITE
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -7414,6 +7886,7 @@ export default function CastingCallsPage() {
           <section
             style={{
               marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(14, "bulk crowd atmosphere casting wardrobe continuity visual matcher daily wrap payroll upi minor child welfare specialty stunt precision roster") ? "block" : "none",
               borderRadius: "24px",
               backgroundColor: "rgba(10, 10, 16, 0.75)",
               border: "1px solid rgba(212, 175, 97, 0.25)",
@@ -7443,7 +7916,7 @@ export default function CastingCallsPage() {
                       fontFamily: "monospace",
                     }}
                   >
-                    ★ MODULE 14 • BACKGROUND CASTING, CONTINUITY &amp; WRAP PAYROLL
+                    BACKGROUND CASTING, CONTINUITY &amp; WRAP PAYROLL
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -7459,7 +7932,7 @@ export default function CastingCallsPage() {
                       fontWeight: 600,
                     }}
                   >
-                    5 STANDALONE PRODUCTION MODULES ACTIVE
+                    5 ON-SET TOOLS ACTIVE
                   </span>
                 </div>
               </div>
@@ -8031,7 +8504,11 @@ export default function CastingCallsPage() {
             </div>
           </section>
 
-          {/* Search Bar */}
+          {/* ══════════════════════════════════════════════════════════════
+              ACTOR CASTING CALLS PORTAL SECTION
+          ══════════════════════════════════════════════════════════════ */}
+          <div style={{ display: activePortalTab === "castings" || activePortalTab === "all" ? "block" : "none" }}>
+            {/* Search Bar */}
           <div
             style={{
               display: "flex",
@@ -8125,6 +8602,54 @@ export default function CastingCallsPage() {
               ))}
             </div>
 
+            
+            {/* Actor Demographic Quick Match Chips */}
+            <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap", marginTop: "12px", width: "100%", paddingBottom: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", marginRight: "4px" }}>
+                Role Match:
+              </span>
+              {ROLE_GENDERS.map((g) => (
+                <button
+                  key={g.id}
+                  onClick={() => setSelectedGender(g.id)}
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontSize: "10px",
+                    fontFamily: "monospace",
+                    border: selectedGender === g.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
+                    backgroundColor: selectedGender === g.id ? "rgba(212,175,97,0.15)" : "transparent",
+                    color: selectedGender === g.id ? "#ffffff" : "#9ca3af",
+                    cursor: "pointer",
+                  }}
+                >
+                  {g.label}
+                </button>
+              ))}
+
+              <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", margin: "0 4px 0 12px" }}>
+                Age:
+              </span>
+              {AGE_BRACKETS.map((a) => (
+                <button
+                  key={a.id}
+                  onClick={() => setSelectedAge(a.id)}
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontSize: "10px",
+                    fontFamily: "monospace",
+                    border: selectedAge === a.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
+                    backgroundColor: selectedAge === a.id ? "rgba(212,175,97,0.15)" : "transparent",
+                    color: selectedAge === a.id ? "#ffffff" : "#9ca3af",
+                    cursor: "pointer",
+                  }}
+                >
+                  {a.label}
+                </button>
+              ))}
+            </div>
+
             {/* Right controls */}
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <select
@@ -8174,6 +8699,7 @@ export default function CastingCallsPage() {
               </label>
             </div>
           </div>
+          </div>
         </section>
 
         {/* ── RESULTS ── */}
@@ -8181,7 +8707,7 @@ export default function CastingCallsPage() {
           style={{
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "40px 32px",
+            padding: "40px 32px", display: activePortalTab === "castings" || activePortalTab === "all" ? "block" : "none",
           }}
         >
           {/* Result count row */}
@@ -8261,7 +8787,7 @@ export default function CastingCallsPage() {
               }}
             >
               {filtered.map((call) => (
-                <CastingCard key={call.id} call={call} />
+                <CastingCard key={call.id} call={call} onApply={() => { setSelectedCastingForApply(call); setIsApplyModalOpen(true); }} />
               ))}
             </div>
           )}
@@ -8658,13 +9184,20 @@ export default function CastingCallsPage() {
         defaultProject={selectedPitchProject}
       />
 
+      {/* Quick Audition Application Modal for Performers */}
+      <AuditionApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        castingCall={selectedCastingForApply}
+      />
+
 
 
     </>
   );
 }
 
-function CastingCard({ call }: { call: typeof CASTINGS[0] }) {
+function CastingCard({ call, onApply }: { call: typeof CASTINGS[0]; onApply: () => void }) {
   return (
     <div
       style={{
@@ -8946,7 +9479,30 @@ function CastingCard({ call }: { call: typeof CASTINGS[0] }) {
             </div>
           </div>
 
-          <Link
+          
+              <div style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "14px" }}>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onApply();
+                  }}
+                  className="btn-cinema-gold"
+                  style={{
+                    flex: 1,
+                    height: "36px",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span>APPLY FOR ROLE</span>
+                  <span>➔</span>
+                </button>
+                <Link
             href={`/casting-calls/${call.id}`}
             style={{
               display: "inline-flex",
@@ -8969,6 +9525,7 @@ function CastingCard({ call }: { call: typeof CASTINGS[0] }) {
           >
             VIEW SIDES <ArrowRight size={12} />
           </Link>
+              </div>
         </div>
       </div>
     </div>
