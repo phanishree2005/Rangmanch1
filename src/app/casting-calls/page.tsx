@@ -71,6 +71,9 @@ import ForeignCrewVisaModal from "@/components/ForeignCrewVisaModal";
 import SubtitleDubQcModal from "@/components/SubtitleDubQcModal";
 import FilmMarketSalesModal from "@/components/FilmMarketSalesModal";
 import CompletionGuarantorModal from "@/components/CompletionGuarantorModal";
+import ForensicScreenerModal from "@/components/ForensicScreenerModal";
+import FilmRestorationModal from "@/components/FilmRestorationModal";
+import FranchiseCanonModal from "@/components/FranchiseCanonModal";
 import {
   Camera,
   Landmark,
@@ -131,6 +134,9 @@ import {
   Tv2,
   Layers,
   SlidersHorizontal,
+  GitBranch,
+  BookOpen,
+  Wand2,
 } from "lucide-react";
 
 // ─── Self-contained casting data ─────────────────────────────
@@ -358,7 +364,7 @@ const STUDIO_PROJECTS = [
 ];
 
 const PHASES = [
-  { id: "all", label: "All 67 Tools", count: 67, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+  { id: "all", label: "All 70 Tools", count: 70, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] },
   { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
   { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
   { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
@@ -367,6 +373,7 @@ const PHASES = [
   { id: "distribution", label: "Theatrical, Box Office & OTT", count: 5, modules: [13] },
   { id: "sound_music", label: "Sound & Dolby Atmos Score", count: 5, modules: [15] },
   { id: "international_tax", label: "International & Tax Credits", count: 6, modules: [16] },
+  { id: "franchise_security", label: "Franchise Canon & Security", count: 3, modules: [17] },
 ];
 
 const ROLE_GENDERS = [
@@ -492,6 +499,11 @@ export default function CastingCallsPage() {
   const [isSubtitleDubQcOpen, setIsSubtitleDubQcOpen] = useState(false);
   const [isFilmMarketSalesOpen, setIsFilmMarketSalesOpen] = useState(false);
   const [isCompletionGuarantorOpen, setIsCompletionGuarantorOpen] = useState(false);
+
+  // Module 17: Franchise Canon, Anti-Piracy Security & Archival Preservation (Features #95 - #97)
+  const [isForensicScreenerOpen, setIsForensicScreenerOpen] = useState(false);
+  const [isFilmRestorationOpen, setIsFilmRestorationOpen] = useState(false);
+  const [isFranchiseCanonOpen, setIsFranchiseCanonOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -731,7 +743,7 @@ export default function CastingCallsPage() {
                 }}
               >
                 <span>🎬</span>
-                <span>STUDIO DIRECTOR SUITE (67 TOOLS)</span>
+                <span>STUDIO DIRECTOR SUITE (70 TOOLS)</span>
                 {activePortalTab === "director_suite" && (
                   <span
                     style={{
@@ -835,7 +847,7 @@ export default function CastingCallsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 67 TOOLS)
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 70 TOOLS)
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
                     <select
@@ -9929,6 +9941,432 @@ export default function CastingCallsPage() {
           </section>
 
           {/* ══════════════════════════════════════════════════════════════
+              MODULE 17: FRANCHISE CANON, ANTI-PIRACY SECURITY & ARCHIVAL PRESERVATION (Features 95-97)
+              3 Dedicated Standalone Feature Cards
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(17, "forensic screener pixel dna watermark anti-piracy drm leak tracing archival 35mm 70mm film restoration photochemical grain lto-9 scan franchise canon bible multiverse timeline lore transmedia") ? "block" : "none",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 17 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                  marginBottom: "8px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      letterSpacing: "0.15em",
+                      color: "#d4af61",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                    }}
+                  >
+                    FRANCHISE CANON, ANTI-PIRACY &amp; PRESERVATION
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      backgroundColor: "rgba(212, 175, 97, 0.15)",
+                      color: "#f7e7c4",
+                      border: "1px solid rgba(212, 175, 97, 0.3)",
+                      padding: "1px 8px",
+                      borderRadius: "999px",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    SECURITY &amp; HERITAGE VAULT
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    color: "#d4af61",
+                    padding: "6px 14px",
+                    borderRadius: "8px",
+                    backgroundColor: "rgba(212, 175, 97, 0.08)",
+                    border: "1px solid rgba(212, 175, 97, 0.25)",
+                  }}
+                >
+                  ● 3 ENTERPRISE STUDIO TOOLS ACTIVE
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  letterSpacing: "-0.01em",
+                  margin: 0,
+                }}
+              >
+                Franchise Canon, Anti-Piracy Security &amp; Archival Preservation Suite
+              </h2>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#8e8e9e",
+                  margin: "4px 0 0 0",
+                }}
+              >
+                Zero-trust forensic watermarking with leak tracing, 4K/8K photochemical film restoration with LTO-9 archival packaging, and transmedia cinematic universe canon management.
+              </p>
+            </div>
+
+            {/* 3 Cards for Module 17 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 95 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <ShieldAlert size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Zero-Trust Forensic Screener &amp; Watermark Vault
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      PIXEL DNA WATERMARK
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Imperceptible steganographic watermarking, HDCP 2.3 hardware screen blanking, time-bombed 24-48h access tokens, and automated leak origin probe.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Zero-Trust Encrypted
+                  </span>
+                  <button
+                    onClick={() => setIsForensicScreenerOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    GENERATE WATERMARKED SCREENER ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 96 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Sparkles size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          4K/8K Archival Film Restoration &amp; Stock Preserver
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      FIAF LTO-9 ARCHIVE
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    35mm/70mm photochemical DPX ingest, neural dust/tramline scratch inpainting, cyan/magenta dye fading recovery, Kodak 5219 grain synthesis, and FIAF LTO-9 vault packaging.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    4K DPX Uncompressed
+                  </span>
+                  <button
+                    onClick={() => setIsFilmRestorationOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    LAUNCH RESTORATION SUITE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 97 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Globe2 size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Transmedia Franchise Canon &amp; Multiverse Bible Engine
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      STUDIO CANON LORE
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Cinematic universe timeline continuity across prequels/sequels, character age and physical scar tracking, lore paradox gatekeeper, and transmedia licensing manifests.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Coherent Multiverse
+                  </span>
+                  <button
+                    onClick={() => setIsFranchiseCanonOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    OPEN FRANCHISE BIBLE ➔
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
               ACTOR CASTING CALLS PORTAL SECTION
           ══════════════════════════════════════════════════════════════ */}
           <div style={{ display: activePortalTab === "castings" || activePortalTab === "all" ? "block" : "none" }}>
@@ -10682,6 +11120,27 @@ export default function CastingCallsPage() {
       <CompletionGuarantorModal
         isOpen={isCompletionGuarantorOpen}
         onClose={() => setIsCompletionGuarantorOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #95: Zero-Trust Forensic Screener & Watermark Vault Modal */}
+      <ForensicScreenerModal
+        isOpen={isForensicScreenerOpen}
+        onClose={() => setIsForensicScreenerOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #96: 4K/8K Archival Film Restoration & Stock Preserver Modal */}
+      <FilmRestorationModal
+        isOpen={isFilmRestorationOpen}
+        onClose={() => setIsFilmRestorationOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #97: Transmedia Franchise Canon & Multiverse Bible Engine Modal */}
+      <FranchiseCanonModal
+        isOpen={isFranchiseCanonOpen}
+        onClose={() => setIsFranchiseCanonOpen(false)}
         defaultProject={selectedPitchProject}
       />
 
