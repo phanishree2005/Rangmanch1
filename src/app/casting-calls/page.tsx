@@ -70,6 +70,7 @@ import AtaCarnetLogisticsModal from "@/components/AtaCarnetLogisticsModal";
 import ForeignCrewVisaModal from "@/components/ForeignCrewVisaModal";
 import SubtitleDubQcModal from "@/components/SubtitleDubQcModal";
 import FilmMarketSalesModal from "@/components/FilmMarketSalesModal";
+import CompletionGuarantorModal from "@/components/CompletionGuarantorModal";
 import {
   Camera,
   Landmark,
@@ -357,7 +358,7 @@ const STUDIO_PROJECTS = [
 ];
 
 const PHASES = [
-  { id: "all", label: "All 66 Tools", count: 66, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+  { id: "all", label: "All 67 Tools", count: 67, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
   { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
   { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
   { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
@@ -365,7 +366,7 @@ const PHASES = [
   { id: "onset_safety", label: "On-Set, ICVFX & Continuity", count: 7, modules: [12, 14] },
   { id: "distribution", label: "Theatrical, Box Office & OTT", count: 5, modules: [13] },
   { id: "sound_music", label: "Sound & Dolby Atmos Score", count: 5, modules: [15] },
-  { id: "international_tax", label: "International & Tax Credits", count: 5, modules: [16] },
+  { id: "international_tax", label: "International & Tax Credits", count: 6, modules: [16] },
 ];
 
 const ROLE_GENDERS = [
@@ -490,6 +491,7 @@ export default function CastingCallsPage() {
   const [isForeignCrewVisaOpen, setIsForeignCrewVisaOpen] = useState(false);
   const [isSubtitleDubQcOpen, setIsSubtitleDubQcOpen] = useState(false);
   const [isFilmMarketSalesOpen, setIsFilmMarketSalesOpen] = useState(false);
+  const [isCompletionGuarantorOpen, setIsCompletionGuarantorOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -729,7 +731,7 @@ export default function CastingCallsPage() {
                 }}
               >
                 <span>🎬</span>
-                <span>STUDIO DIRECTOR SUITE (66 TOOLS)</span>
+                <span>STUDIO DIRECTOR SUITE (67 TOOLS)</span>
                 {activePortalTab === "director_suite" && (
                   <span
                     style={{
@@ -833,7 +835,7 @@ export default function CastingCallsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 66 TOOLS)
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 67 TOOLS)
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
                     <select
@@ -9242,7 +9244,7 @@ export default function CastingCallsPage() {
                     border: "1px solid rgba(212, 175, 97, 0.25)",
                   }}
                 >
-                  ● 5 CO-PRODUCTION TOOLS ACTIVE
+                  ● 6 CO-PRODUCTION &amp; BOND TOOLS ACTIVE
                 </div>
               </div>
               <h2
@@ -9812,6 +9814,114 @@ export default function CastingCallsPage() {
                     }}
                   >
                     ACCESS RIGHTS VAULT ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 6: FEATURE 94 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <ShieldCheck size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Film Completion Guarantor &amp; Bond Escrow Monitor
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      FFI BONDED COVER
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Statutory completion guarantee underwriting with ₹45 Cr strike price backstop, 10% dual-signature contingency release, and takeover triggers.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹45 Cr Backstopped
+                  </span>
+                  <button
+                    onClick={() => setIsCompletionGuarantorOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    MONITOR BOND ESCROW ➔
                   </button>
                 </div>
               </div>
@@ -10565,6 +10675,13 @@ export default function CastingCallsPage() {
       <FilmMarketSalesModal
         isOpen={isFilmMarketSalesOpen}
         onClose={() => setIsFilmMarketSalesOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #94: Film Completion Guarantor & Bond Escrow Modal */}
+      <CompletionGuarantorModal
+        isOpen={isCompletionGuarantorOpen}
+        onClose={() => setIsCompletionGuarantorOpen(false)}
         defaultProject={selectedPitchProject}
       />
 
