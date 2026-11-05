@@ -20,6 +20,6 @@ npm run dev
 
 
 ## Tech Stack
-- **Framework**: Next.js 16 (App Router) with React 19 & TypeScript...
+- **Framework**: Next.js 16 (App Router) with React 19 & TypeScript.
 - **Styling**: Tailored CSS design tokens & Lucide icons
-- **State & UI**: Radix UI primitives, Zustand, Framer Motion...
+- **State & UI**: Radix UI primitives, Zustand, Framer Motion.
