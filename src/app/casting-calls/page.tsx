@@ -60,8 +60,22 @@ import DailyWrapPayrollModal from "@/components/DailyWrapPayrollModal";
 import MinorWelfareModal from "@/components/MinorWelfareModal";
 import SpecialtyStuntRosterModal from "@/components/SpecialtyStuntRosterModal";
 import AuditionApplyModal from "@/components/AuditionApplyModal";
+import OrchestralScoreModal from "@/components/OrchestralScoreModal";
+import DolbyAtmosSpatialModal from "@/components/DolbyAtmosSpatialModal";
+import SoundtrackLicensingModal from "@/components/SoundtrackLicensingModal";
+import VocalTimbreMatcherModal from "@/components/VocalTimbreMatcherModal";
+import FoleyAmbisonicsModal from "@/components/FoleyAmbisonicsModal";
+import TaxRebateCalculatorModal from "@/components/TaxRebateCalculatorModal";
+import AtaCarnetLogisticsModal from "@/components/AtaCarnetLogisticsModal";
+import ForeignCrewVisaModal from "@/components/ForeignCrewVisaModal";
+import SubtitleDubQcModal from "@/components/SubtitleDubQcModal";
+import FilmMarketSalesModal from "@/components/FilmMarketSalesModal";
 import {
   Camera,
+  Landmark,
+  Globe2,
+  Volume2,
+  Languages,
   Eye,
   UserCheck,
   Briefcase,
@@ -343,13 +357,15 @@ const STUDIO_PROJECTS = [
 ];
 
 const PHASES = [
-  { id: "all", label: "All 56 Tools", count: 56, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] },
+  { id: "all", label: "All 66 Tools", count: 66, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
   { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
   { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
   { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
   { id: "script_post", label: "Script Room, VFX & Dailies", count: 10, modules: [10, 11] },
   { id: "onset_safety", label: "On-Set, ICVFX & Continuity", count: 7, modules: [12, 14] },
   { id: "distribution", label: "Theatrical, Box Office & OTT", count: 5, modules: [13] },
+  { id: "sound_music", label: "Sound & Dolby Atmos Score", count: 5, modules: [15] },
+  { id: "international_tax", label: "International & Tax Credits", count: 5, modules: [16] },
 ];
 
 const ROLE_GENDERS = [
@@ -461,6 +477,20 @@ export default function CastingCallsPage() {
   const [isMinorWelfareOpen, setIsMinorWelfareOpen] = useState(false);
   const [isSpecialtyStuntOpen, setIsSpecialtyStuntOpen] = useState(false);
 
+  // Module 15: Music, Dolby Atmos & Soundstage (Features #84 - #88)
+  const [isOrchestralScoreOpen, setIsOrchestralScoreOpen] = useState(false);
+  const [isDolbyAtmosSpatialOpen, setIsDolbyAtmosSpatialOpen] = useState(false);
+  const [isSoundtrackLicensingOpen, setIsSoundtrackLicensingOpen] = useState(false);
+  const [isVocalTimbreMatcherOpen, setIsVocalTimbreMatcherOpen] = useState(false);
+  const [isFoleyAmbisonicsOpen, setIsFoleyAmbisonicsOpen] = useState(false);
+
+  // Module 16: International Co-Production, Tax Credits & Foreign Sales (Features #89 - #93)
+  const [isTaxRebateCalcOpen, setIsTaxRebateCalcOpen] = useState(false);
+  const [isAtaCarnetLogisticsOpen, setIsAtaCarnetLogisticsOpen] = useState(false);
+  const [isForeignCrewVisaOpen, setIsForeignCrewVisaOpen] = useState(false);
+  const [isSubtitleDubQcOpen, setIsSubtitleDubQcOpen] = useState(false);
+  const [isFilmMarketSalesOpen, setIsFilmMarketSalesOpen] = useState(false);
+
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
       const q = search.toLowerCase();
@@ -474,7 +504,7 @@ export default function CastingCallsPage() {
       const matchEscrow = !onlyEscrow || c.escrow;
       const matchLang =
         language === "All Languages" || c.language.includes(language);
-      
+
       const matchGender =
         selectedGender === "all" ||
         c.roles.some((r) => r.gender.toLowerCase().includes(selectedGender.toLowerCase()));
@@ -616,7 +646,7 @@ export default function CastingCallsPage() {
             </div>
           </div>
 
-          
+
           {/* ══════════════════════════════════════════════════════════════
               PORTAL VIEW MODE SWITCHER (Actor Audition Portal vs Director Suite)
           ══════════════════════════════════════════════════════════════ */}
@@ -699,7 +729,7 @@ export default function CastingCallsPage() {
                 }}
               >
                 <span>🎬</span>
-                <span>STUDIO DIRECTOR SUITE (56 TOOLS)</span>
+                <span>STUDIO DIRECTOR SUITE (66 TOOLS)</span>
                 {activePortalTab === "director_suite" && (
                   <span
                     style={{
@@ -803,7 +833,7 @@ export default function CastingCallsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 56 TOOLS)
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 66 TOOLS)
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
                     <select
@@ -959,7 +989,7 @@ export default function CastingCallsPage() {
             </div>
           </div>
 
-{/* ── CASTING DIRECTOR SUITE • MODULE 3 (FEATURES 28, 29, 30) ── */}
+          {/* ── CASTING DIRECTOR SUITE • MODULE 3 (FEATURES 28, 29, 30) ── */}
           <section style={{ marginBottom: "36px", display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(3, "pitchbook callback dispatcher talent archive roster director command center") ? "block" : "none" }}>
             <div
               style={{
@@ -6874,7 +6904,7 @@ export default function CastingCallsPage() {
             </div>
           </section>
 
-                    {/* ══════════════════════════════════════════════════════════════════
+          {/* ══════════════════════════════════════════════════════════════════
               MODULE 12: VIRTUAL PRODUCTION, ICVFX & ON-SET DIT ENGINEERING (Features 72-73)
               2 Dedicated Standalone Feature Cards (Completely Unmerged & Well-Structured)
           ══════════════════════════════════════════════════════════════════ */}
@@ -7215,7 +7245,7 @@ export default function CastingCallsPage() {
             </div>
           </section>
 
-          
+
           {/* ══════════════════════════════════════════════════════════════
               MODULE 13: THEATRICAL DISTRIBUTION, BOX OFFICE & OTT SYNDICATION SUITE (Features 74-78)
               5 Dedicated Standalone Feature Cards (Completely Unmerged & Well-Structured)
@@ -7224,7 +7254,7 @@ export default function CastingCallsPage() {
             style={{
               marginBottom: "36px",
               borderRadius: "24px",
-              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(13, "dci cinema package kdm encryption ott licensing escrow box office predictive theatrical campaign film festival awards manager") ? "block" : "none", 
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(13, "dci cinema package kdm encryption ott licensing escrow box office predictive theatrical campaign film festival awards manager") ? "block" : "none",
               backgroundColor: "rgba(10, 10, 16, 0.75)",
               border: "1px solid rgba(212, 175, 97, 0.25)",
               padding: "28px",
@@ -8505,200 +8535,1484 @@ export default function CastingCallsPage() {
           </section>
 
           {/* ══════════════════════════════════════════════════════════════
+              MODULE 15: MUSIC, DOLBY ATMOS SOUNDSTAGE & FILM SCORE PUBLISHING (Features 84-88)
+              5 Dedicated Standalone Feature Cards
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(15, "orchestral score live soundstage daw stems dolby atmos spatial audio panning soundtrack licensing iprs royalties lyric voice timbre matcher foley ambisonic sound effects") ? "block" : "none",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 15 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                  marginBottom: "8px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      letterSpacing: "0.15em",
+                      color: "#d4af61",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                    }}
+                  >
+                    MUSIC, DOLBY ATMOS &amp; SOUNDSTAGE
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      backgroundColor: "rgba(212, 175, 97, 0.15)",
+                      color: "#f7e7c4",
+                      border: "1px solid rgba(212, 175, 97, 0.3)",
+                      padding: "1px 8px",
+                      borderRadius: "999px",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    THEATRICAL AUDIO SUITE
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    color: "#d4af61",
+                    padding: "6px 14px",
+                    borderRadius: "8px",
+                    backgroundColor: "rgba(212, 175, 97, 0.08)",
+                    border: "1px solid rgba(212, 175, 97, 0.25)",
+                  }}
+                >
+                  ● 5 SOUND &amp; SCORING TOOLS ACTIVE
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  letterSpacing: "-0.01em",
+                  margin: 0,
+                }}
+              >
+                Film Score Orchestration, Dolby Atmos 3D &amp; Soundtrack Publishing
+              </h2>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#8e8e9e",
+                  margin: "4px 0 0 0",
+                }}
+              >
+                Live soundstage multi-track stem ingesting, 128-object Dolby Atmos spatial panning, IPRS royalty publishing escrow, and multilingual lyric timbre matching.
+              </p>
+            </div>
+
+            {/* 5 Cards for Module 15 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 84 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Music size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Orchestral Score &amp; Live Soundstage Session Recorder
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      96KHZ PRO TOOLS HDX
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    64-piece live orchestral recording logger with conductor timecode lock, multi-stem DAW tracking, and SMPTE picture lock cue sheet exports.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    48-Track Live Stem Ingest
+                  </span>
+                  <button
+                    onClick={() => setIsOrchestralScoreOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    LAUNCH SOUNDSTAGE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 85 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Headphones size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Dolby Atmos 7.1.4 / 9.1.6 Spatial Audio Mixer
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      ADM BWF MASTERING
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    3D acoustic bed and 128 dynamic sound object panning coordinator with theatrical LKFS dialogue gating and SMPTE 2067-201 interoperability.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    128 Positional Objects
+                  </span>
+                  <button
+                    onClick={() => setIsDolbyAtmosSpatialOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    PAN SPATIAL AUDIO ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 86 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <FileText size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Soundtrack Licensing, IPRS &amp; Cue-Sheet Publishing
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      CISAC / IPRS VERIFIED
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Statutory 50:50 composer-lyricist royalty waterfall accounting with smart banking escrow guarantees, worldwide sync rights, and CISAC cue sheets.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹1.75 Cr Escrow Locked
+                  </span>
+                  <button
+                    onClick={() => setIsSoundtrackLicensingOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    PUBLISH SOUNDTRACK ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 4: FEATURE 87 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Mic size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          AI Lyric Adaptation &amp; Singer Voice Matcher
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      METRIC METER SYNC
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Syllable stress matching for Pan-India dubs across Tamil, Telugu, and Kannada with AI acoustic vocal timbre vectoring and guild singer bookings.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    97.4% Timbre Fidelity
+                  </span>
+                  <button
+                    onClick={() => setIsVocalTimbreMatcherOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    MATCH DUB VOCALIST ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 5: FEATURE 88 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Volume2 size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Foley &amp; High-Resolution Ambisonic Sound Bank
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      360° SPHERICAL UCS
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    2nd-order Ambisonics B-format field captures and tactile physical prop foley logging with Universal Category System metadata and sub-frame sync.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    240 Verified Spot Cues
+                  </span>
+                  <button
+                    onClick={() => setIsFoleyAmbisonicsOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    BROWSE FOLEY BANK ➔
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
+              MODULE 16: INTERNATIONAL CO-PRODUCTION, TAX CREDITS & FOREIGN DISTRIBUTION (Features 89-93)
+              5 Dedicated Standalone Feature Cards
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(16, "international film commission tax rebate incentive calculator ata carnet camera customs logistics foreign cast crew visa work permit multi-language subtitles dub qc global sales agent film market territory rights") ? "block" : "none",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 16 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                  marginBottom: "8px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      letterSpacing: "0.15em",
+                      color: "#d4af61",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                    }}
+                  >
+                    GLOBAL CO-PRODUCTION &amp; TAX CREDITS
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      backgroundColor: "rgba(212, 175, 97, 0.15)",
+                      color: "#f7e7c4",
+                      border: "1px solid rgba(212, 175, 97, 0.3)",
+                      padding: "1px 8px",
+                      borderRadius: "999px",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    INTERNATIONAL COMMISSIONS
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    color: "#d4af61",
+                    padding: "6px 14px",
+                    borderRadius: "8px",
+                    backgroundColor: "rgba(212, 175, 97, 0.08)",
+                    border: "1px solid rgba(212, 175, 97, 0.25)",
+                  }}
+                >
+                  ● 5 CO-PRODUCTION TOOLS ACTIVE
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  letterSpacing: "-0.01em",
+                  margin: 0,
+                }}
+              >
+                International Co-Production, Tax Credits &amp; Foreign Market Vault
+              </h2>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#8e8e9e",
+                  margin: "4px 0 0 0",
+                }}
+              >
+                BFI and Abu Dhabi cash rebate modeling, ATA Carnet camera logistics, foreign HOD expedited visa petitions, and Marché du Film Cannes territory sales.
+              </p>
+            </div>
+
+            {/* 5 Cards for Module 16 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 89 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Landmark size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Film Commission Tax Rebate &amp; Incentive Calculator
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      BFI / ABU DHABI 30%
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Real-time cash rebate modeling across UK 25.5%, UAE 30%, Georgia USA, and New Zealand with statutory cultural test points and KPMG audit dossiers.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹3.06 Cr Cash Inflow
+                  </span>
+                  <button
+                    onClick={() => setIsTaxRebateCalcOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    MODEL TAX REBATE ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 90 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Camera size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          ATA Carnet &amp; Gear Logistics Customs Clearance
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      FICCI BONDED PASS
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Itemized serial number manifests for ARRI and Cooke lenses with FICCI customs surety bonds, flight case tracking, and IATA battery certifications.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹4.85 Cr Gear Bonded
+                  </span>
+                  <button
+                    onClick={() => setIsAtaCarnetLogisticsOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    GENERATE CARNET ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 91 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <UserCheck size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Foreign Cast &amp; Crew Visa / Work Permit Fast-Track
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      MIB &amp; FRRO EXPEDITE
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Indian Film Visa (F-Category) consular filing for international DPs and wire riggers with Ministry of I&amp;B shoot clearances and trade union NOC endorsements.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    14 Passports Cleared
+                  </span>
+                  <button
+                    onClick={() => setIsForeignCrewVisaOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    EXPEDITE VISAS ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 4: FEATURE 92 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Languages size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Multi-Language AI Subtitling &amp; Dubbing Master Verifier
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      NETFLIX 17-CPS QC
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    SMPTE-TT 18-language timed text validation with strict 17 CPS reading speed caps, bottom-center alignment rules, and idiom localization audits.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    18 Streams Zero-Defect
+                  </span>
+                  <button
+                    onClick={() => setIsSubtitleDubQcOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    VERIFY SUBTITLES ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 5: FEATURE 93 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Globe2 size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Global Sales Agent &amp; Film Market Territory Rights Vault
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      CANNES &amp; EFM SALES
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Territory rights matrix for Cannes Marché and EFM Berlinale with minimum guarantee escrow contracts, 12.5% sales commission ledger, and delivery holdbacks.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    $5.88M Pre-Sales Escrow
+                  </span>
+                  <button
+                    onClick={() => setIsFilmMarketSalesOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    ACCESS RIGHTS VAULT ➔
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
               ACTOR CASTING CALLS PORTAL SECTION
           ══════════════════════════════════════════════════════════════ */}
           <div style={{ display: activePortalTab === "castings" || activePortalTab === "all" ? "block" : "none" }}>
             {/* Search Bar */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              padding: "0 16px",
-              height: "52px",
-              borderRadius: "14px",
-              border: "1px solid rgba(255,255,255,0.14)",
-              backgroundColor: "#08080e",
-              marginBottom: "28px",
-              transition: "border-color 0.2s",
-            }}
-          >
-            <Search size={16} color="#606070" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search roles, production studios, dialects, genres..."
+            <div
               style={{
-                flex: 1,
-                background: "none",
-                border: "none",
-                outline: "none",
-                color: "#ffffff",
-                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "0 16px",
+                height: "52px",
+                borderRadius: "14px",
+                border: "1px solid rgba(255,255,255,0.14)",
+                backgroundColor: "#08080e",
+                marginBottom: "28px",
+                transition: "border-color 0.2s",
               }}
-            />
-            {search && (
-              <button
-                onClick={() => setSearch("")}
+            >
+              <Search size={16} color="#606070" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search roles, production studios, dialects, genres..."
                 style={{
-                  fontSize: "11px",
-                  fontFamily: "monospace",
-                  color: "#606070",
+                  flex: 1,
                   background: "none",
                   border: "none",
-                  cursor: "pointer",
-                  textTransform: "uppercase",
+                  outline: "none",
+                  color: "#ffffff",
+                  fontSize: "14px",
                 }}
-              >
-                CLEAR
-              </button>
-            )}
-          </div>
-
-          {/* Filter Row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            {/* Type chips */}
-            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-              {TYPES.map((t) => (
+              />
+              {search && (
                 <button
-                  key={t.id}
-                  onClick={() => setType(t.id)}
+                  onClick={() => setSearch("")}
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    color: "#606070",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  CLEAR
+                </button>
+              )}
+            </div>
+
+            {/* Filter Row */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            >
+              {/* Type chips */}
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                {TYPES.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setType(t.id)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      padding: "8px 16px",
+                      borderRadius: "100px",
+                      border:
+                        type === t.id
+                          ? "1px solid #d4af61"
+                          : "1px solid rgba(255,255,255,0.1)",
+                      backgroundColor:
+                        type === t.id
+                          ? "rgba(212,175,97,0.12)"
+                          : "transparent",
+                      color: type === t.id ? "#d4af61" : "#8a8a9a",
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      fontWeight: type === t.id ? 700 : 500,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      cursor: "pointer",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    <t.icon size={12} />
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+
+
+              {/* Actor Demographic Quick Match Chips */}
+              <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap", marginTop: "12px", width: "100%", paddingBottom: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", marginRight: "4px" }}>
+                  Role Match:
+                </span>
+                {ROLE_GENDERS.map((g) => (
+                  <button
+                    key={g.id}
+                    onClick={() => setSelectedGender(g.id)}
+                    style={{
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      border: selectedGender === g.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
+                      backgroundColor: selectedGender === g.id ? "rgba(212,175,97,0.15)" : "transparent",
+                      color: selectedGender === g.id ? "#ffffff" : "#9ca3af",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {g.label}
+                  </button>
+                ))}
+
+                <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", margin: "0 4px 0 12px" }}>
+                  Age:
+                </span>
+                {AGE_BRACKETS.map((a) => (
+                  <button
+                    key={a.id}
+                    onClick={() => setSelectedAge(a.id)}
+                    style={{
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      border: selectedAge === a.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
+                      backgroundColor: selectedAge === a.id ? "rgba(212,175,97,0.15)" : "transparent",
+                      color: selectedAge === a.id ? "#ffffff" : "#9ca3af",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {a.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Right controls */}
+              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  style={{
+                    background: "#08080e",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    color: "#c0c0d0",
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    outline: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {["All Languages", "Hindi", "Telugu", "Tamil", "Marathi", "Bengali", "English"].map((l) => (
+                    <option key={l} value={l} style={{ background: "#0a0a10" }}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+
+                <label
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "6px",
-                    padding: "8px 16px",
-                    borderRadius: "100px",
-                    border:
-                      type === t.id
-                        ? "1px solid #d4af61"
-                        : "1px solid rgba(255,255,255,0.1)",
-                    backgroundColor:
-                      type === t.id
-                        ? "rgba(212,175,97,0.12)"
-                        : "transparent",
-                    color: type === t.id ? "#d4af61" : "#8a8a9a",
+                    gap: "8px",
                     fontSize: "11px",
                     fontFamily: "monospace",
-                    fontWeight: type === t.id ? 700 : 500,
+                    color: onlyEscrow ? "#34d399" : "#8a8a9a",
+                    cursor: "pointer",
+                    userSelect: "none",
                     textTransform: "uppercase",
                     letterSpacing: "0.06em",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
                   }}
                 >
-                  <t.icon size={12} />
-                  {t.label}
-                </button>
-              ))}
+                  <input
+                    type="checkbox"
+                    checked={onlyEscrow}
+                    onChange={(e) => setOnlyEscrow(e.target.checked)}
+                    style={{ accentColor: "#34d399", cursor: "pointer" }}
+                  />
+                  <Shield size={12} />
+                  Escrow Only
+                </label>
+              </div>
             </div>
-
-            
-            {/* Actor Demographic Quick Match Chips */}
-            <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap", marginTop: "12px", width: "100%", paddingBottom: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-              <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", marginRight: "4px" }}>
-                Role Match:
-              </span>
-              {ROLE_GENDERS.map((g) => (
-                <button
-                  key={g.id}
-                  onClick={() => setSelectedGender(g.id)}
-                  style={{
-                    padding: "4px 10px",
-                    borderRadius: "6px",
-                    fontSize: "10px",
-                    fontFamily: "monospace",
-                    border: selectedGender === g.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
-                    backgroundColor: selectedGender === g.id ? "rgba(212,175,97,0.15)" : "transparent",
-                    color: selectedGender === g.id ? "#ffffff" : "#9ca3af",
-                    cursor: "pointer",
-                  }}
-                >
-                  {g.label}
-                </button>
-              ))}
-
-              <span style={{ fontSize: "10px", color: "#6b7280", fontFamily: "monospace", textTransform: "uppercase", margin: "0 4px 0 12px" }}>
-                Age:
-              </span>
-              {AGE_BRACKETS.map((a) => (
-                <button
-                  key={a.id}
-                  onClick={() => setSelectedAge(a.id)}
-                  style={{
-                    padding: "4px 10px",
-                    borderRadius: "6px",
-                    fontSize: "10px",
-                    fontFamily: "monospace",
-                    border: selectedAge === a.id ? "1px solid #d4af61" : "1px solid rgba(255,255,255,0.08)",
-                    backgroundColor: selectedAge === a.id ? "rgba(212,175,97,0.15)" : "transparent",
-                    color: selectedAge === a.id ? "#ffffff" : "#9ca3af",
-                    cursor: "pointer",
-                  }}
-                >
-                  {a.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Right controls */}
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                style={{
-                  background: "#08080e",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  borderRadius: "8px",
-                  padding: "8px 12px",
-                  color: "#c0c0d0",
-                  fontSize: "11px",
-                  fontFamily: "monospace",
-                  outline: "none",
-                  cursor: "pointer",
-                }}
-              >
-                {["All Languages", "Hindi", "Telugu", "Tamil", "Marathi", "Bengali", "English"].map((l) => (
-                  <option key={l} value={l} style={{ background: "#0a0a10" }}>
-                    {l}
-                  </option>
-                ))}
-              </select>
-
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  fontSize: "11px",
-                  fontFamily: "monospace",
-                  color: onlyEscrow ? "#34d399" : "#8a8a9a",
-                  cursor: "pointer",
-                  userSelect: "none",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={onlyEscrow}
-                  onChange={(e) => setOnlyEscrow(e.target.checked)}
-                  style={{ accentColor: "#34d399", cursor: "pointer" }}
-                />
-                <Shield size={12} />
-                Escrow Only
-              </label>
-            </div>
-          </div>
           </div>
         </section>
 
@@ -9184,6 +10498,76 @@ export default function CastingCallsPage() {
         defaultProject={selectedPitchProject}
       />
 
+      {/* Feature #84: Orchestral Score & Soundstage Session Recorder Modal */}
+      <OrchestralScoreModal
+        isOpen={isOrchestralScoreOpen}
+        onClose={() => setIsOrchestralScoreOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #85: Dolby Atmos 7.1.4 Spatial Audio Mixer Modal */}
+      <DolbyAtmosSpatialModal
+        isOpen={isDolbyAtmosSpatialOpen}
+        onClose={() => setIsDolbyAtmosSpatialOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #86: Film Soundtrack Licensing & IPRS Royalty Modal */}
+      <SoundtrackLicensingModal
+        isOpen={isSoundtrackLicensingOpen}
+        onClose={() => setIsSoundtrackLicensingOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #87: AI Lyric Adaptation & Multilingual Singer Matcher Modal */}
+      <VocalTimbreMatcherModal
+        isOpen={isVocalTimbreMatcherOpen}
+        onClose={() => setIsVocalTimbreMatcherOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #88: Foley & Ambisonic Sound Bank Modal */}
+      <FoleyAmbisonicsModal
+        isOpen={isFoleyAmbisonicsOpen}
+        onClose={() => setIsFoleyAmbisonicsOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #89: Tax Rebate Calculator Modal */}
+      <TaxRebateCalculatorModal
+        isOpen={isTaxRebateCalcOpen}
+        onClose={() => setIsTaxRebateCalcOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #90: ATA Carnet & Gear Customs Logistics Modal */}
+      <AtaCarnetLogisticsModal
+        isOpen={isAtaCarnetLogisticsOpen}
+        onClose={() => setIsAtaCarnetLogisticsOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #91: Foreign Cast & Crew Visa Fast-Track Modal */}
+      <ForeignCrewVisaModal
+        isOpen={isForeignCrewVisaOpen}
+        onClose={() => setIsForeignCrewVisaOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #92: Multi-Language Subtitle & Dub QC Modal */}
+      <SubtitleDubQcModal
+        isOpen={isSubtitleDubQcOpen}
+        onClose={() => setIsSubtitleDubQcOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #93: Global Sales Agent & Territory Rights Vault Modal */}
+      <FilmMarketSalesModal
+        isOpen={isFilmMarketSalesOpen}
+        onClose={() => setIsFilmMarketSalesOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
       {/* Quick Audition Application Modal for Performers */}
       <AuditionApplyModal
         isOpen={isApplyModalOpen}
@@ -9479,53 +10863,53 @@ function CastingCard({ call, onApply }: { call: typeof CASTINGS[0]; onApply: () 
             </div>
           </div>
 
-          
-              <div style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "14px" }}>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onApply();
-                  }}
-                  className="btn-cinema-gold"
-                  style={{
-                    flex: 1,
-                    height: "36px",
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "6px",
-                  }}
-                >
-                  <span>APPLY FOR ROLE</span>
-                  <span>➔</span>
-                </button>
-                <Link
-            href={`/casting-calls/${call.id}`}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              padding: "10px 20px",
-              borderRadius: "10px",
-              backgroundColor: call.color,
-              color: "#040406",
-              fontSize: "11px",
-              fontFamily: "monospace",
-              fontWeight: 800,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              textDecoration: "none",
-              transition: "opacity 0.2s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
-            VIEW SIDES <ArrowRight size={12} />
-          </Link>
-              </div>
+
+          <div style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "14px" }}>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onApply();
+              }}
+              className="btn-cinema-gold"
+              style={{
+                flex: 1,
+                height: "36px",
+                fontSize: "11px",
+                fontWeight: 700,
+                borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "6px",
+              }}
+            >
+              <span>APPLY FOR ROLE</span>
+              <span>➔</span>
+            </button>
+            <Link
+              href={`/casting-calls/${call.id}`}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "10px 20px",
+                borderRadius: "10px",
+                backgroundColor: call.color,
+                color: "#040406",
+                fontSize: "11px",
+                fontFamily: "monospace",
+                fontWeight: 800,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                textDecoration: "none",
+                transition: "opacity 0.2s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              VIEW SIDES <ArrowRight size={12} />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
