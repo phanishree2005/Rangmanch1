@@ -74,6 +74,9 @@ import CompletionGuarantorModal from "@/components/CompletionGuarantorModal";
 import ForensicScreenerModal from "@/components/ForensicScreenerModal";
 import FilmRestorationModal from "@/components/FilmRestorationModal";
 import FranchiseCanonModal from "@/components/FranchiseCanonModal";
+import CryptographicEsignModal from "@/components/CryptographicEsignModal";
+import CameraMediaOffloadModal from "@/components/CameraMediaOffloadModal";
+import GlobalTerritoryWaterfallModal from "@/components/GlobalTerritoryWaterfallModal";
 import {
   Camera,
   Landmark,
@@ -137,6 +140,7 @@ import {
   GitBranch,
   BookOpen,
   Wand2,
+  HardDrive,
 } from "lucide-react";
 
 // ─── Self-contained casting data ─────────────────────────────
@@ -364,7 +368,7 @@ const STUDIO_PROJECTS = [
 ];
 
 const PHASES = [
-  { id: "all", label: "All 70 Tools", count: 70, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] },
+  { id: "all", label: "All 73 Tools", count: 73, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
   { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
   { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
   { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
@@ -374,6 +378,7 @@ const PHASES = [
   { id: "sound_music", label: "Sound & Dolby Atmos Score", count: 5, modules: [15] },
   { id: "international_tax", label: "International & Tax Credits", count: 6, modules: [16] },
   { id: "franchise_security", label: "Franchise Canon & Security", count: 3, modules: [17] },
+  { id: "crypto_dit_waterfall", label: "Smart Legal, DIT & Waterfall", count: 3, modules: [18] },
 ];
 
 const ROLE_GENDERS = [
@@ -504,6 +509,11 @@ export default function CastingCallsPage() {
   const [isForensicScreenerOpen, setIsForensicScreenerOpen] = useState(false);
   const [isFilmRestorationOpen, setIsFilmRestorationOpen] = useState(false);
   const [isFranchiseCanonOpen, setIsFranchiseCanonOpen] = useState(false);
+
+  // Module 18: Smart Legal eSign, DIT Media Offload & Revenue Waterfall (Features #98 - #100)
+  const [isCryptographicEsignOpen, setIsCryptographicEsignOpen] = useState(false);
+  const [isCameraMediaOffloadOpen, setIsCameraMediaOffloadOpen] = useState(false);
+  const [isGlobalTerritoryWaterfallOpen, setIsGlobalTerritoryWaterfallOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -743,7 +753,7 @@ export default function CastingCallsPage() {
                 }}
               >
                 <span>🎬</span>
-                <span>STUDIO DIRECTOR SUITE (70 TOOLS)</span>
+                <span>STUDIO DIRECTOR SUITE (73 TOOLS)</span>
                 {activePortalTab === "director_suite" && (
                   <span
                     style={{
@@ -847,7 +857,7 @@ export default function CastingCallsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 70 TOOLS)
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 73 TOOLS)
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
                     <select
@@ -10367,6 +10377,432 @@ export default function CastingCallsPage() {
           </section>
 
           {/* ══════════════════════════════════════════════════════════════
+              MODULE 18: SMART LEGAL ESIGN, DIT MEDIA OFFLOAD & REVENUE WATERFALL (Features 98-100)
+              3 Dedicated Standalone Feature Cards
+          ══════════════════════════════════════════════════════════════ */}
+          <section
+            style={{
+              marginBottom: "36px",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(18, "cryptographic pki esign smart contract digital signature sha-256 qr tamper proof camera mag media offload dit checksum xxhash64 raw mhl global territory sales revenue waterfall cama recoupment mg minimum guarantee") ? "block" : "none",
+              borderRadius: "24px",
+              backgroundColor: "rgba(10, 10, 16, 0.75)",
+              border: "1px solid rgba(212, 175, 97, 0.25)",
+              padding: "28px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            {/* Module 18 Header */}
+            <div style={{ marginBottom: "24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                  marginBottom: "8px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      letterSpacing: "0.15em",
+                      color: "#d4af61",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                    }}
+                  >
+                    SMART LEGAL, DIT &amp; WATERFALL
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      backgroundColor: "rgba(212, 175, 97, 0.15)",
+                      color: "#f7e7c4",
+                      border: "1px solid rgba(212, 175, 97, 0.3)",
+                      padding: "1px 8px",
+                      borderRadius: "999px",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    100TH MILESTONE SUITE
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontFamily: "monospace",
+                    color: "#d4af61",
+                    padding: "6px 14px",
+                    borderRadius: "8px",
+                    backgroundColor: "rgba(212, 175, 97, 0.08)",
+                    border: "1px solid rgba(212, 175, 97, 0.25)",
+                  }}
+                >
+                  ● 3 ENTERPRISE STUDIO TOOLS ACTIVE
+                </div>
+              </div>
+              <h2
+                className="font-cinema"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  letterSpacing: "-0.01em",
+                  margin: 0,
+                }}
+              >
+                Smart Cryptographic Legal, DIT Media Offload &amp; Global Revenue Waterfall Suite
+              </h2>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#8e8e9e",
+                  margin: "4px 0 0 0",
+                }}
+              >
+                Zero-fee cryptographic PKI smart contracts with tamper-proof QR audit certificates, ASC-MHL camera card offload with xxHash64 verification, and international territory sales waterfall recoupment modeling.
+              </p>
+            </div>
+
+            {/* 3 Cards for Module 18 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {/* CARD 1: FEATURE 98 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <FileSignature size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Cryptographic PKI eSign &amp; Tamper-Proof Smart Contract Vault
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      FREE CRYPTO ESIGN
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    100% free open cryptographic signing with WebCrypto SHA-256 asymmetric hashing, 2FA OTP signer verification, handwritten calligraphy pad, and court-admissible QR audit certificate.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    ₹0 Fee Sealed Vault
+                  </span>
+                  <button
+                    onClick={() => setIsCryptographicEsignOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    SIGN WITH CRYPTO SEAL ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 2: FEATURE 99 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <HardDrive size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          DIT Camera Mag Offload &amp; Checksum Verification Vault
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      ASC-MHL CHECKSUM
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Multi-destination cascaded card offload with xxHash64 bit-perfect verification, Cooke /i lens metadata inspection, LogC4 false-color clipping QC, and camera mag wipe clearance.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Zero Bit Corruption
+                  </span>
+                  <button
+                    onClick={() => setIsCameraMediaOffloadOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    LAUNCH DIT OFFLOAD ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 3: FEATURE 100 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Coins size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          Global Film Territory Sales &amp; Revenue Waterfall Ledger
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      CAMA WATERFALL
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Territory-by-territory minimum guarantees (MGs), senior debt priority recoupment, DTAA foreign withholding tax relief, and producer net profit pool CAMA distribution schedules.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    $18.2M MGs Booked
+                  </span>
+                  <button
+                    onClick={() => setIsGlobalTerritoryWaterfallOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    RECOUPMENT WATERFALL ➔
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════
               ACTOR CASTING CALLS PORTAL SECTION
           ══════════════════════════════════════════════════════════════ */}
           <div style={{ display: activePortalTab === "castings" || activePortalTab === "all" ? "block" : "none" }}>
@@ -11141,6 +11577,27 @@ export default function CastingCallsPage() {
       <FranchiseCanonModal
         isOpen={isFranchiseCanonOpen}
         onClose={() => setIsFranchiseCanonOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #98: Cryptographic PKI eSign & Tamper-Proof Smart Contract Vault Modal */}
+      <CryptographicEsignModal
+        isOpen={isCryptographicEsignOpen}
+        onClose={() => setIsCryptographicEsignOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #99: DIT Camera Mag Offload & Checksum Verification Vault Modal */}
+      <CameraMediaOffloadModal
+        isOpen={isCameraMediaOffloadOpen}
+        onClose={() => setIsCameraMediaOffloadOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #100: Global Film Territory Sales & Revenue Waterfall Ledger Modal */}
+      <GlobalTerritoryWaterfallModal
+        isOpen={isGlobalTerritoryWaterfallOpen}
+        onClose={() => setIsGlobalTerritoryWaterfallOpen(false)}
         defaultProject={selectedPitchProject}
       />
 

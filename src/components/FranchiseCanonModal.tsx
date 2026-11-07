@@ -825,3 +825,4 @@ export default function FranchiseCanonModal({
     </div>
   );
 }
+
