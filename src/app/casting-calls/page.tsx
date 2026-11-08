@@ -77,6 +77,7 @@ import FranchiseCanonModal from "@/components/FranchiseCanonModal";
 import CryptographicEsignModal from "@/components/CryptographicEsignModal";
 import CameraMediaOffloadModal from "@/components/CameraMediaOffloadModal";
 import GlobalTerritoryWaterfallModal from "@/components/GlobalTerritoryWaterfallModal";
+import ScriptDialoguePunchUpModal from "@/components/ScriptDialoguePunchUpModal";
 import {
   Camera,
   Landmark,
@@ -368,7 +369,7 @@ const STUDIO_PROJECTS = [
 ];
 
 const PHASES = [
-  { id: "all", label: "All 73 Tools", count: 73, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+  { id: "all", label: "All 74 Tools", count: 74, modules: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
   { id: "pre_prod", label: "Pre-Production & Packaging", count: 8, modules: [3, 4] },
   { id: "auditions", label: "Casting & Callback Suite", count: 16, modules: [5, 6, 7] },
   { id: "legal_studio", label: "Guild Contracts & AI Studio", count: 10, modules: [8, 9] },
@@ -378,7 +379,7 @@ const PHASES = [
   { id: "sound_music", label: "Sound & Dolby Atmos Score", count: 5, modules: [15] },
   { id: "international_tax", label: "International & Tax Credits", count: 6, modules: [16] },
   { id: "franchise_security", label: "Franchise Canon & Security", count: 3, modules: [17] },
-  { id: "crypto_dit_waterfall", label: "Smart Legal, DIT & Waterfall", count: 3, modules: [18] },
+  { id: "crypto_dit_waterfall", label: "Smart Legal, DIT & Waterfall", count: 4, modules: [18] },
 ];
 
 const ROLE_GENDERS = [
@@ -510,10 +511,11 @@ export default function CastingCallsPage() {
   const [isFilmRestorationOpen, setIsFilmRestorationOpen] = useState(false);
   const [isFranchiseCanonOpen, setIsFranchiseCanonOpen] = useState(false);
 
-  // Module 18: Smart Legal eSign, DIT Media Offload & Revenue Waterfall (Features #98 - #100)
+  // Module 18: Smart Legal eSign, DIT Media Offload & Revenue Waterfall (Features #98 - #101)
   const [isCryptographicEsignOpen, setIsCryptographicEsignOpen] = useState(false);
   const [isCameraMediaOffloadOpen, setIsCameraMediaOffloadOpen] = useState(false);
   const [isGlobalTerritoryWaterfallOpen, setIsGlobalTerritoryWaterfallOpen] = useState(false);
+  const [isDialoguePunchUpOpen, setIsDialoguePunchUpOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return CASTINGS.filter((c) => {
@@ -753,7 +755,7 @@ export default function CastingCallsPage() {
                 }}
               >
                 <span>🎬</span>
-                <span>STUDIO DIRECTOR SUITE (73 TOOLS)</span>
+                <span>STUDIO DIRECTOR SUITE (74 TOOLS)</span>
                 {activePortalTab === "director_suite" && (
                   <span
                     style={{
@@ -857,7 +859,7 @@ export default function CastingCallsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 73 TOOLS)
+                    ★ MASTER STUDIO PROJECT CONTEXT (SYNCHRONIZES ALL 74 TOOLS)
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
                     <select
@@ -10377,13 +10379,13 @@ export default function CastingCallsPage() {
           </section>
 
           {/* ══════════════════════════════════════════════════════════════
-              MODULE 18: SMART LEGAL ESIGN, DIT MEDIA OFFLOAD & REVENUE WATERFALL (Features 98-100)
-              3 Dedicated Standalone Feature Cards
+              MODULE 18: SMART LEGAL ESIGN, DIT MEDIA OFFLOAD & REVENUE WATERFALL (Features 98-101)
+              4 Dedicated Standalone Feature Cards
           ══════════════════════════════════════════════════════════════ */}
           <section
             style={{
               marginBottom: "36px",
-              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(18, "cryptographic pki esign smart contract digital signature sha-256 qr tamper proof camera mag media offload dit checksum xxhash64 raw mhl global territory sales revenue waterfall cama recoupment mg minimum guarantee") ? "block" : "none",
+              display: (activePortalTab === "director_suite" || activePortalTab === "all") && isModuleVisible(18, "cryptographic pki esign smart contract digital signature sha-256 qr tamper proof camera mag media offload dit checksum xxhash64 raw mhl global territory sales revenue waterfall cama recoupment mg minimum guarantee dialogue punch-up screenplay subtext sentiment script polish revision exposition") ? "block" : "none",
               borderRadius: "24px",
               backgroundColor: "rgba(10, 10, 16, 0.75)",
               border: "1px solid rgba(212, 175, 97, 0.25)",
@@ -10428,7 +10430,7 @@ export default function CastingCallsPage() {
                       fontFamily: "monospace",
                     }}
                   >
-                    100TH MILESTONE SUITE
+                    101ST MILESTONE SUITE
                   </span>
                 </div>
                 <div
@@ -10442,7 +10444,7 @@ export default function CastingCallsPage() {
                     border: "1px solid rgba(212, 175, 97, 0.25)",
                   }}
                 >
-                  ● 3 ENTERPRISE STUDIO TOOLS ACTIVE
+                  ● 4 ENTERPRISE STUDIO TOOLS ACTIVE
                 </div>
               </div>
               <h2
@@ -10796,6 +10798,114 @@ export default function CastingCallsPage() {
                     }}
                   >
                     RECOUPMENT WATERFALL ➔
+                  </button>
+                </div>
+              </div>
+
+              {/* CARD 4: FEATURE 101 */}
+              <div
+                style={{
+                  borderRadius: "18px",
+                  backgroundColor: "rgba(18, 18, 28, 0.85)",
+                  border: "1px solid rgba(212, 175, 97, 0.28)",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "14px",
+                          background: "linear-gradient(135deg, rgba(212, 175, 97, 0.2) 0%, rgba(212, 175, 97, 0.05) 100%)",
+                          border: "1px solid rgba(212, 175, 97, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#d4af61",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Wand2 size={22} />
+                      </div>
+                      <div>
+                        <h3
+                          className="font-cinema"
+                          style={{
+                            fontSize: "17px",
+                            fontWeight: 700,
+                            color: "#ffffff",
+                            margin: "2px 0 0 0",
+                          }}
+                        >
+                          AI Screenplay Dialogue Punch-Up &amp; Subtext Sentiment Studio
+                        </h3>
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        backgroundColor: "rgba(212, 175, 97, 0.15)",
+                        color: "#f7e7c4",
+                        border: "1px solid rgba(212, 175, 97, 0.3)",
+                      }}
+                    >
+                      SUBTEXT PUNCH-UP
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#9a9aa8",
+                      lineHeight: 1.6,
+                      margin: "0 0 18px 0",
+                    }}
+                  >
+                    Scene-by-scene subtext heatmap analysis, exposition purging, regional dialect and idiom cadence tuning, and side-by-side screenplay revisions.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    paddingTop: "16px",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "#606070", fontFamily: "monospace" }}>
+                    Subtext: 94/100 Elite
+                  </span>
+                  <button
+                    onClick={() => setIsDialoguePunchUpOpen(true)}
+                    className="btn-cinema-gold"
+                    style={{
+                      height: "36px",
+                      padding: "0 18px",
+                      fontSize: "11px",
+                      borderRadius: "999px",
+                    }}
+                  >
+                    PUNCH UP SCREENPLAY ➔
                   </button>
                 </div>
               </div>
@@ -11598,6 +11708,13 @@ export default function CastingCallsPage() {
       <GlobalTerritoryWaterfallModal
         isOpen={isGlobalTerritoryWaterfallOpen}
         onClose={() => setIsGlobalTerritoryWaterfallOpen(false)}
+        defaultProject={selectedPitchProject}
+      />
+
+      {/* Feature #101: AI Screenplay Dialogue Punch-Up & Subtext Sentiment Studio Modal */}
+      <ScriptDialoguePunchUpModal
+        isOpen={isDialoguePunchUpOpen}
+        onClose={() => setIsDialoguePunchUpOpen(false)}
         defaultProject={selectedPitchProject}
       />
 
